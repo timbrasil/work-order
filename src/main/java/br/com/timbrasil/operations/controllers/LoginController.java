@@ -1,12 +1,12 @@
 package br.com.timbrasil.operations.controllers;
 
 import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
 
 @Controller
 public class LoginController {
 	
-	@Get
+	@Path("/login")
 	public void login(){
 		
 	}

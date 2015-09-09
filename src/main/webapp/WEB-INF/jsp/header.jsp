@@ -3,15 +3,11 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Listing</title>
+  <title>Centro de operações</title>
 
   <!-- bootstrap -->
   <link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css'/>">
   <link rel="stylesheet" href="<c:url value='/assets/css/bootstrap-theme.min.css'/>">
-
-  <!-- style -->
-   <link rel="stylesheet" href="<c:url value='/assets/css/index.css'/>">
-  <link rel="stylesheet" href="<c:url value='/assets/css/forms.css'/>">
 </head>
 
 <body>
