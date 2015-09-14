@@ -18,7 +18,7 @@ public class UserDao {
 		this.manager = manager;
 	}
 	
-	public void add(User user){
+	public void save(User user){
 		manager.persist(user);
 	}
 	
