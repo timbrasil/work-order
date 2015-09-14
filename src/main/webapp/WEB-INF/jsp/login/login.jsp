@@ -12,10 +12,10 @@
 
 <body>
 	<div class="container">
-		<form method="post">
+		<form method="post" action='<c:url value="/login/autenticate"/>'>
 			<h1>Login</h1>
-			<input type="text" placeholder="Email" /> <input type="password"
-				placeholder="Senha" />
+			<input type="text" placeholder="Email" name="usuario.nome" />
+			<input type="password"	placeholder="Senha" name="usuario.senha" />
 			<button type="submit">Login</button>
 		</form>
 	</div>
