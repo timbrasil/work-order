@@ -34,16 +34,18 @@
 <div class="form-group">
 	<label for="user.cpassword">Confirme a senha:</label>
 	<div class="input-group">
-		<input type="password" name="user.password" id="user.password"
-			value="${user.password}" />
+		<input type="password" name="cpassword" id="cpassword"
+			value="${cpassword}" />
 	</div>
 </div>
 
 <div class="form-group">
 	<label for="user.region">Região:</label>
 	<div class="input-group">
-		<select>
-			<option value="TSP">TSP</option>
+		<select name="user.region">
+			<c:forEach items="${regions}" var="region">
+				<option value="${region}" >${region}</option>
+			</c:forEach>
 		</select>
 	</div>
 </div>
@@ -51,8 +53,10 @@
 <div class="form-group">
 	<label for="user.area">Area:</label>
 	<div class="input-group">
-		<select>
-			<option value="CNO">CNO</option>
+		<select name="user.area">
+			<c:forEach items="${areas}" var="area">
+				<option value="${area}">${area}</option>
+			</c:forEach>
 		</select>
 	</div>
 </div>

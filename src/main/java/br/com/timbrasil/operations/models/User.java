@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -29,13 +31,16 @@ public class User {
 	private String password;
 	
 	//Matricula F8012345
-	@NotEmpty
+	@NotNull
+	@Size(min = 1, max = 8)
 	private String register;
 	
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private Area area;
 	
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private Region region;
 
 	/**
@@ -51,6 +56,11 @@ public class User {
 		this.password = password;
 		this.area = area;
 		this.region = region;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
 	}
 	
 	public String getName() {
@@ -100,7 +110,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
+	public String getRegister() {
+		return register;
+	}
+
+	public void setRegister(String register) {
+		this.register = register;
+	}
 }
