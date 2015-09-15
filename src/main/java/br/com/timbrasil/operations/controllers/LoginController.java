@@ -37,7 +37,9 @@ public class LoginController {
 	@Public
 	@Path("/login")
 	public void login(){
-		
+		if(userSession.isLogged()){
+			result.redirectTo(HomeController.class).index();
+		}
 	}
 	
 	@Public

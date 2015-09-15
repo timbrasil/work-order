@@ -3,8 +3,9 @@
 	<div class="container">
 		<h2>Cadastro</h2>
 		
-		<form method="post" action='<c:url value = "/user/save"/>'>
-		
+		<form method="POST" action="<c:url value = "/user/save"/>">
+			<%@include file="form-inputs.jsp" %>
+			<button type="submit" class="btn"></button>
 		</form>
 	</div>
 <%@include file="../footer.jsp" %>

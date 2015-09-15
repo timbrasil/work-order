@@ -3,22 +3,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Centro de operaÃ§Ãµes</title>
+<title>Centro de operações</title>
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/bootstrap.min.css'/>">
+	href="<c:url value="/assets/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/bootstrap-theme.min.css'/>">
+	href="<c:url value="/assets/css/bootstrap-theme.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/main.css'/>"/>
+	href="<c:url value="/assets/css/main.css"/>"/>
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/login.css'/>"/>
+	href="<c:url value="/assets/css/login.css"/>"/>
 </head>
 
 <body>
 	<div class="container">
 		<div class="col-md-12">
 			<form class="form-horizontal templatemo-login-form" role="form"
-				action='<c:url value="/login/autenticate"/>' method='POST'>
+				action="<c:url value="/login/autenticate"/>" method="POST">
 				<div class="row">
 					<div class="col-md-12" style="margin: auto; text-align:center">
 						<img id="logo" src="images/almox_logo_darkbg.png">
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 
-	<script src="<c:url value='/assets/js/jquery-2.1.4.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
+	<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
 </body>
 </html>
