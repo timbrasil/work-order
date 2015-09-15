@@ -14,7 +14,7 @@
 	href="<c:url value="/assets/css/login.css"/>"/>
 </head>
 
-<body>
+<body class="bg-image">
 	<div class="container">
 		<div class="col-md-12">
 			<form class="form-horizontal templatemo-login-form" role="form"
@@ -38,7 +38,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
-								<label for="password" class="control-label">Senha</label>
+								<label for="user.password" class="control-label">Senha</label>
 								<div class="inner-addon left-addon">
 								    <i class="glyphicon glyphicon-lock"></i>
 								    <input type="password" class="form-control" 
