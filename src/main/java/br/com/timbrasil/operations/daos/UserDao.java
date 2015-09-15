@@ -18,6 +18,14 @@ public class UserDao {
 		this.manager = manager;
 	}
 	
+	/**
+	 * CDI ONLY
+	 */
+	@Deprecated
+	public UserDao(){
+		this(null);
+	}
+	
 	public void save(User user){
 		manager.persist(user);
 	}
@@ -27,13 +35,13 @@ public class UserDao {
 	}
 
 	public User find(User user) {
-		String jpql = "select u from User u where name = :pName and password = :pPassword";
+		String jpql = "select u from User u where email = :pEmail and password = :pPassword";
 		TypedQuery<User> typedQuery = manager.createQuery(jpql, User.class);
 		
-		typedQuery.setParameter("pName", user.getName());
+		typedQuery.setParameter("pEmail", user.getEmail());
 		typedQuery.setParameter("pPassword", user.getPassword());
 		try{
-			return typedQuery.getSingleResult();			
+			return typedQuery.getSingleResult();
 		}catch(NoResultException nre){
 			return null;
 		}

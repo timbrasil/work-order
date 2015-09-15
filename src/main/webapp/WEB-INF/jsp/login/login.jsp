@@ -14,8 +14,8 @@
 	<div class="container">
 		<form method="post" action='<c:url value="/login/autenticate"/>'>
 			<h1>Login</h1>
-			<input type="text" placeholder="Email" name="usuario.nome" />
-			<input type="password"	placeholder="Senha" name="usuario.senha" />
+			<input type="text" placeholder="Email" name="user.email" />
+			<input type="password"	placeholder="Senha" name="user.password" />
 			<button type="submit">Login</button>
 		</form>
 	</div>

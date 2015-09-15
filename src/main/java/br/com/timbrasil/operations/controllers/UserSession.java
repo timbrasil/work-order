@@ -1,5 +1,7 @@
 package br.com.timbrasil.operations.controllers;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -7,8 +9,9 @@ import br.com.timbrasil.operations.models.User;
 
 @Named
 @SessionScoped
-public class UserSession {
-
+public class UserSession implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private User user;
 
 	public User getUser() {
