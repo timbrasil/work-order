@@ -16,6 +16,5 @@ public class HomeController
    @Path("/")
    public void index()
    {
-      result.include("msg", "Message from your controller");
    }
 }
