@@ -21,7 +21,7 @@ public class User {
 	@NotEmpty
 	private String name;
 	
-	@Email
+	@Email(message = "Email inválido")
 	@NotEmpty
 	private String email;
 	

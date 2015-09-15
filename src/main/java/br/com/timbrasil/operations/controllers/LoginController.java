@@ -6,7 +6,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.validator.I18nMessage;
+import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.timbrasil.operations.annotations.Public;
 import br.com.timbrasil.operations.daos.UserDao;
@@ -45,7 +45,7 @@ public class LoginController {
 	public void autenticate(User user){
 		this.user = userDao.find(user);
 		if(this.user == null){
-			validator.add(new I18nMessage("login", "login.invalid"));
+			validator.add(new SimpleMessage("Erro", "Email e/ou Senha inválidos"));
             validator.onErrorUsePageOf(this).login();
         }
         this.userSession.setUser(this.user);
