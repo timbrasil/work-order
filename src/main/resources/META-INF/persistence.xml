@@ -4,6 +4,7 @@
     <properties>
       <property name="javax.persistence.jdbc.user" value="operations"/>
       <property name="javax.persistence.jdbc.password" value="operations"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

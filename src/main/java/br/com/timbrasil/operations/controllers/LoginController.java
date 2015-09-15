@@ -45,11 +45,19 @@ public class LoginController {
 	public void autenticate(User user){
 		this.user = userDao.find(user);
 		if(user != null){
-			validator.add(new I18nMessage("login", "login.invalido"));
+			validator.add(new I18nMessage("login", "login.invalid"));
             validator.onErrorUsePageOf(this).login();
         }
         this.userSession.setUser(this.user);
         result.redirectTo(HomeController.class);
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
