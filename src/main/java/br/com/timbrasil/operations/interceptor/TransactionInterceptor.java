@@ -1,11 +1,12 @@
-//VRaptor JPA plugin instead
-
+////VRaptor JPA plugin instead
+//
 //
 //package br.com.timbrasil.operations.interceptor;
 //
 //import javax.inject.Inject;
 //import javax.persistence.EntityManager;
 //
+//import br.com.caelum.vraptor.AroundCall;
 //import br.com.caelum.vraptor.interceptor.SimpleInterceptorStack;
 //
 //public class TransactionInterceptor {
@@ -22,6 +23,7 @@
 //		this.manager = manager;
 //	}
 //	
+//	@AroundCall
 //	public void intercept(SimpleInterceptorStack stack){
 //		manager.getTransaction().begin();
 //		

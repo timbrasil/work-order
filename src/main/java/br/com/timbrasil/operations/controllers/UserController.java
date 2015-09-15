@@ -1,7 +1,6 @@
 package br.com.timbrasil.operations.controllers;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
