@@ -44,12 +44,12 @@ public class LoginController {
 	@Post
 	public void autenticate(User user){
 		this.user = userDao.find(user);
-		if(user != null){
+		if(this.user == null){
 			validator.add(new I18nMessage("login", "login.invalid"));
             validator.onErrorUsePageOf(this).login();
         }
         this.userSession.setUser(this.user);
-        result.redirectTo(HomeController.class);
+        result.redirectTo(HomeController.class).index();
 	}
 	
 	public User getUser() {
