@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Centro de operações</title>
+<title>Centro de operaÃ§Ãµes</title>
 <link rel="stylesheet"
 	href="<c:url value='/assets/css/bootstrap.min.css'/>">
 <link rel="stylesheet"

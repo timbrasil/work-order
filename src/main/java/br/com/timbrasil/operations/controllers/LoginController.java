@@ -46,7 +46,7 @@ public class LoginController {
 		this.user = userDao.find(user);
 		if(this.user == null){
 			validator.add(new SimpleMessage("Erro", "Email e/ou Senha inválidos"));
-            validator.onErrorUsePageOf(this).login();
+			validator.onErrorRedirectTo(this).login();
         }
         this.userSession.setUser(this.user);
         result.redirectTo(HomeController.class).index();
