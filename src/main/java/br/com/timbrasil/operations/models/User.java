@@ -2,6 +2,7 @@ package br.com.timbrasil.operations.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,15 +30,17 @@ public class User implements Serializable {
 	
 	@Email(message = "Email inválido")
 	@NotEmpty
+	@Column(unique = true)
 	private String email;
 	
 	@NotEmpty
-	@Size(min = 8, max = 255)
+	@Size(min = 8, max = 255,message = "Senha deve possuir no mínimo 8 caracteres")
 	private String password;
 	
 	//Matricula F8012345
 	@NotNull
-	@Size(min = 1, max = 8)
+	@Size(min = 8, max = 8, message = "Matricula deve ter 8 caracteres")
+	@Column(unique = true)
 	private String register;
 	
 	@Enumerated(EnumType.STRING)
