@@ -3,7 +3,7 @@
  */
 
 var user = {
-    save: function (url,name,email,register,password,cpassword,region,area){
+    save: function (url,name,email,register,password,cpassword,region,area,redirect){
         var errors = "";
         //Validações
         if(name=="" || name==null){
@@ -68,6 +68,7 @@ var user = {
                     modal.find('.modal-title').text('Cadastro realizado com sucesso');
                     modal.find('.modal-body').html('O seu cadastro foi realizado com successo!');
                     modal.show();
+                    modal.find('.modal-dismiss').on("click",function(){window.location = redirect})
                 }
             }
         });

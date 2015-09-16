@@ -62,7 +62,8 @@
                 $("#password").val(),
                 $("#cpassword").val(),
                 $("#region").val(),
-                $("#area").val());
+                $("#area").val(),
+                '<c:url value="/login"/>');
     })
 </script>
 </body>

@@ -16,6 +16,9 @@ import br.com.timbrasil.operations.models.Area;
 import br.com.timbrasil.operations.models.Region;
 import br.com.timbrasil.operations.models.User;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class UserController {
 	
@@ -56,9 +59,19 @@ public class UserController {
 		
 		dao.save(user);
 
-		
+		Map<String, Object> aMap = new HashMap<String, Object>();
+		if(validator.hasErrors()) {
+			aMap.put("status",false);
+			aMap.put("errors",validator.getErrors());
+		}
+		else {
+			aMap.put("status",true);
+			aMap.put("dados",user);
+		}
+
+
 //		result.include("sucess","Usuario cadastrado com sucesso");
-		result.use(json()).from(user).serialize();
+		result.use(json()).withoutRoot().from(aMap).recursive().serialize();
 		
 //		result.forwardTo(this).form();
 	}
