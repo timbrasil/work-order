@@ -32,6 +32,7 @@ public class User implements Serializable {
 	private String email;
 	
 	@NotEmpty
+	@Size(min = 8, max = 255)
 	private String password;
 	
 	//Matricula F8012345

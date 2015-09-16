@@ -48,7 +48,7 @@ public class UserController {
 	public void save(User user, String cpassword){
 		dao.save(user);
 		
-		result.redirectTo(LoginController.class).login();
+		result.include("sucess","Usuario cadastrado com sucesso");
 	}
 
 	public User getUser() {
