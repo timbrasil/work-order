@@ -28,7 +28,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotEmpty
+	@NotEmpty(message = "Nome não pode ser vazio")
 	private String name;
 	
 	@Email(message = "Email inválido")
@@ -47,11 +47,11 @@ public class User implements Serializable {
 	private String register;
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull
+	@NotNull(message = "Deve possuir uma area")
 	private Area area;
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull
+	@NotNull(message = "Deve possuir uma região")
 	private Region region;
 
 	/**

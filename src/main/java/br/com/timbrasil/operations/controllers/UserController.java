@@ -1,6 +1,9 @@
 package br.com.timbrasil.operations.controllers;
 
+import static br.com.caelum.vraptor.view.Results.json;
+
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -48,13 +51,16 @@ public class UserController {
 	
 	@Post
 	@Public
-	public void save(User user, String cpassword){
+	public void save(@Valid User user, String cpassword){
 		validator.onErrorUsePageOf(this).form();
 		
 		dao.save(user);
+
 		
-		result.include("sucess","Usuario cadastrado com sucesso");
-		result.forwardTo(this).form();
+//		result.include("sucess","Usuario cadastrado com sucesso");
+		result.use(json()).from(user).serialize();
+		
+//		result.forwardTo(this).form();
 	}
 
 	public User getUser() {

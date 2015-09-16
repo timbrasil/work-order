@@ -49,9 +49,9 @@
     <div class="col-md-12">
         <label for="user.cpassword" class="control-label">Confirme a senha:</label>
         <div class="templatemo-input-icon-container">
-            <input type="password" class="form-control" id="user.cpassword" name="user.cpassword"
+            <input type="password" class="form-control" id="cpassword" name="cpassword"
                    placeholder="Digite sua senha" spellcheck="false"
-                   value="${user.cpassword}" required>
+                   value="${cpassword}" required>
         </div>
     </div>
 </div>
@@ -61,10 +61,10 @@
         <label for="user.region" class="control-label">Selecione sua região:</label>
         <div class="templatemo-input-icon-container">
             <select name="user.region" id="user.region" class="form-control">
+                <option value="null" selected>Selecione uma região</option>
                 <c:forEach items="${regions}" var="region">
                     <option value="${region}">${region}</option>
                 </c:forEach>
-                <option value="0" selected>Selecione uma região</option>
             </select>
         </div>
     </div>
@@ -75,10 +75,10 @@
         <label for="user.area" class="control-label">Selecione sua area:</label>
         <div class="templatemo-input-icon-container">
             <select name="user.area" id="user.area" class="form-control">
+                <option value="null" selected>Selecione uma area</option>
                 <c:forEach items="${areas}" var="area">
                     <option value="${area}">${area}</option>
                 </c:forEach>
-                <option value="0" selected>Selecione uma area</option>
             </select>
         </div>
     </div>
