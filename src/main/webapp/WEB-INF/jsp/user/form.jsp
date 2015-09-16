@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Centro de operações</title>
+    <link rel="icon" href="<c:url value="/assets/images/favicon.ico"/>" >
     <link rel="stylesheet"
           href="<c:url value="/assets/css/bootstrap.min.css"/>">
     <link rel="stylesheet"
@@ -18,7 +19,7 @@
 <div class="container">
     <div class="col-md-12">
         <form class="form-horizontal templatemo-contact-form" role="form"
-              action="<c:url value="/user/save"/>" method="POST" autocomplete="on">
+              action="javascript:void(0)" autocomplete="on">
             <div class="form-group" style="text-align: center">
                 <div class="col-md-12">
                     <h1 class="margin-bottom-15">Cadastro</h1>
@@ -28,7 +29,7 @@
             <%@include file="form-inputs.jsp" %>
             <div class="form-group">
                 <div class="col-md-12">
-                    <input type="submit" value="Cadastrar" class="btn btn-success pull-right col-md-12">
+                    <input type="submit" id="cadastrar" value="Cadastrar" class="btn btn-success pull-right col-md-12">
                 </div>
             </div>
             <div class="form-group">
@@ -45,7 +46,24 @@
     </div>
 </div>
 
+<%@include file="../modalAlert.jsp" %>
+
 <script src="<c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
 <script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/assets/js/user.js"/>"></script>
+
+<script>
+    $("#cadastrar").on("click",function(){
+        user.save(
+                '<c:url value="/user/save"/>',
+                $("#name").val(),
+                $("#email").val(),
+                $("#register").val(),
+                $("#password").val(),
+                $("#cpassword").val(),
+                $("#region").val(),
+                $("#area").val());
+    })
+</script>
 </body>
 </html>
