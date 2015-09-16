@@ -18,7 +18,7 @@
 				action="<c:url value="/login/autenticate"/>" method="POST">
 				<div class="row">
 					<div class="col-md-12" style="margin: auto; text-align:center">
-						<img id="logo" src="images/almox_logo_darkbg.png">
+						<img id="logo" src="<c:url value="/assets/images/LOGO_TIM_cor_fundo_escuro.png"/> ">
 					</div>
 				</div>
 				<div class="row" style="text-align: center">
