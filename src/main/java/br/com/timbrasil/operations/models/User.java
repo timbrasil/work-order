@@ -20,7 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "\"User\"", indexes = {
 		@Index(name = "email_index", columnList = "email"),
-		@Index(name = "register", columnList = "register") })
+		@Index(name = "register_index", columnList = "register") })
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
