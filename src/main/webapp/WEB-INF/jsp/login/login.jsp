@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Centro de operações</title>
+<title>Centro de operaÃ§Ãµes</title>
 <link rel="stylesheet"
 	href="<c:url value="/assets/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
@@ -61,9 +61,12 @@
 							</div>
 						</c:if>
 						<div class="form-group">
-							<div class="col-md-12">
-								<a href="#" class="text-center">Esqueci a
+							<div class="col-md-6">
+								<a href="#" class="text-center btn btn-link">Esqueci a
 									senha</a>
+							</div>
+							<div class="col-md-6">
+								<a href='<c:url value="/user/form" />' class="text-center btn btn-link">Cadastre-se</a>
 							</div>
 						</div>
 					</div>
