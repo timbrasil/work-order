@@ -13,6 +13,11 @@ import br.com.timbrasil.operations.models.Area;
 import br.com.timbrasil.operations.models.Region;
 import br.com.timbrasil.operations.models.User;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static br.com.caelum.vraptor.view.Results.json;
+
 @Controller
 public class UserController {
 	
@@ -33,7 +38,7 @@ public class UserController {
 
 	@Deprecated
 	public UserController() {
-		this(null,null,null,null);
+		this(null, null, null, null);
 	}
 	
 	@Get
@@ -49,13 +54,28 @@ public class UserController {
 	@Post
 	@Public
 	public void save(User user, String cpassword){
+
 		validator.onErrorUsePageOf(this).form();
-		
+
 		dao.save(user);
-		
-		result.include("sucess","Usuario cadastrado com sucesso");
-		result.forwardTo(this).form();
+
+		//result.include("sucess","Usuario cadastrado com sucesso");
+		//result.forwardTo(this).form();
+
+		Map<String, Object> aMap = new HashMap<String, Object>();
+		if(validator.hasErrors()) {
+			aMap.put("status",false);
+			aMap.put("errors",validator.getErrors());
+		}
+		else {
+			aMap.put("status",true);
+			aMap.put("dados",user);
+		}
+
+		result.use(json()).withoutRoot().from(aMap).recursive().serialize();
 	}
+
+
 
 	public User getUser() {
 		return user;

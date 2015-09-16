@@ -2,9 +2,9 @@
 
 <div class="form-group">
 	<div class="col-md-12">
-		<label for="user.name" class="control-label">Nome Completo:</label>
+		<label for=name" class="control-label">Nome Completo:</label>
 		<div class="templatemo-input-icon-container">
-			<input type="text" class="form-control" id="user.name" name="user.name"
+			<input type="text" class="form-control" id="name" name="user.name"
 				   placeholder="Digite seu nome aqui" spellcheck="false"
 				   value="${user.name}" required>
 		</div>
@@ -13,9 +13,9 @@
 
 <div class="form-group">
 	<div class="col-md-12">
-		<label for="user.email" class="control-label">Email:</label>
+		<label for="email" class="control-label">Email:</label>
 		<div class="templatemo-input-icon-container">
-			<input type="email" class="form-control" id="user.email" name="user.email"
+			<input type="email" class="form-control" id="email" name="user.email"
 				   placeholder="Digite seu email aqui" spellcheck="false"
 				   value="${user.email}" required>
 		</div>
@@ -25,9 +25,9 @@
 
 <div class="form-group">
     <div class="col-md-12">
-        <label for="user.register" class="control-label">Matrícula:</label>
+        <label for="register" class="control-label">Matrícula:</label>
         <div class="templatemo-input-icon-container">
-            <input type="text" class="form-control" id="user.register" name="user.register"
+            <input type="text" class="form-control" id="register" name="user.register"
                    placeholder="Ex.: F8012345" spellcheck="false"
                    value="${user.register}" required>
         </div>
@@ -36,9 +36,9 @@
 
 <div class="form-group">
     <div class="col-md-12">
-        <label for="user.password" class="control-label">Senha:</label>
+        <label for="password" class="control-label">Senha:</label>
         <div class="templatemo-input-icon-container">
-            <input type="password" class="form-control" id="user.password" name="user.password"
+            <input type="password" class="form-control" id="password" name="user.password"
                    placeholder="Digite sua senha" spellcheck="false"
                    value="${user.password}" required>
         </div>
@@ -47,20 +47,20 @@
 
 <div class="form-group">
     <div class="col-md-12">
-        <label for="user.cpassword" class="control-label">Confirme a senha:</label>
+        <label for="cpassword" class="control-label">Confirme a senha:</label>
         <div class="templatemo-input-icon-container">
-            <input type="password" class="form-control" id="user.cpassword" name="user.cpassword"
+            <input type="password" class="form-control" id="cpassword" name="user.cpassword"
                    placeholder="Digite sua senha" spellcheck="false"
-                   value="${user.cpassword}" required>
+                   value="${user.cpassword}" min="8" max="40" required>
         </div>
     </div>
 </div>
 
 <div class="form-group">
     <div class="col-md-12">
-        <label for="user.region" class="control-label">Selecione sua região:</label>
+        <label for="region" class="control-label">Selecione sua região:</label>
         <div class="templatemo-input-icon-container">
-            <select name="user.region" id="user.region" class="form-control">
+            <select name="user.region" id="region" class="form-control">
                 <c:forEach items="${regions}" var="region">
                     <option value="${region}">${region}</option>
                 </c:forEach>
@@ -72,9 +72,9 @@
 
 <div class="form-group">
     <div class="col-md-12">
-        <label for="user.area" class="control-label">Selecione sua area:</label>
+        <label for="area" class="control-label">Selecione sua area:</label>
         <div class="templatemo-input-icon-container">
-            <select name="user.area" id="user.area" class="form-control">
+            <select name="user.area" id="area" class="form-control">
                 <c:forEach items="${areas}" var="area">
                     <option value="${area}">${area}</option>
                 </c:forEach>

@@ -2,16 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Centro de operaÃ§Ãµes</title>
-<link rel="stylesheet"
-	href="<c:url value="/assets/css/bootstrap.min.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/assets/css/bootstrap-theme.min.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/assets/css/main.css"/>"/>
-<link rel="stylesheet"
-	href="<c:url value="/assets/css/login.css"/>"/>
+    <meta charset="UTF-8">
+    <title>Centro de operações</title>
+    <link rel="icon" href="<c:url value="/assets/images/favicon.ico"/>" />
+    <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-theme.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/assets/css/main.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/assets/css/login.css"/>"/>
 </head>
 
 <body class="bg-image">
