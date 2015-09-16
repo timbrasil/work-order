@@ -6,6 +6,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.Validator;
 import br.com.timbrasil.operations.annotations.Public;
 import br.com.timbrasil.operations.daos.UserDao;
 import br.com.timbrasil.operations.models.Area;
@@ -17,12 +18,14 @@ public class UserController {
 	
 	private final UserSession userSession;
 	private final Result result;
+	private final Validator validator;
 	private final UserDao dao;
 	private User user;
 	private String cpassword;
 	
 	@Inject
-	public UserController(UserSession userSession, Result result, UserDao dao) {
+	public UserController(UserSession userSession, Result result, UserDao dao, Validator validator) {
+		this.validator = validator;
 		this.dao = dao;
 		this.userSession = userSession;
 		this.result = result;
@@ -30,7 +33,7 @@ public class UserController {
 
 	@Deprecated
 	public UserController() {
-		this(null,null,null);
+		this(null,null,null,null);
 	}
 	
 	@Get
@@ -46,9 +49,12 @@ public class UserController {
 	@Post
 	@Public
 	public void save(User user, String cpassword){
+		validator.onErrorUsePageOf(this).form();
+		
 		dao.save(user);
 		
 		result.include("sucess","Usuario cadastrado com sucesso");
+		result.forwardTo(this).form();
 	}
 
 	public User getUser() {
