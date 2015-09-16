@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,7 +18,9 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "\"User\"")
+@Table(name = "\"User\"", indexes = {
+		@Index(name = "email_index", columnList = "email"),
+		@Index(name = "register", columnList = "register") })
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
