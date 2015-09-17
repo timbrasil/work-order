@@ -69,11 +69,7 @@ public class UserController {
 			aMap.put("dados",user);
 		}
 
-
-//		result.include("sucess","Usuario cadastrado com sucesso");
-		result.use(json()).withoutRoot().from(aMap).recursive().serialize();
-		
-//		result.forwardTo(this).form();
+		result.use(json()).withoutRoot().from(aMap).recursive().serialize();		
 	}
 
 	public User getUser() {
