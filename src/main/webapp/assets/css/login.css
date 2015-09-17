@@ -1,12 +1,12 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 
 /*-------------------------------------
 	background
 ---------------------------------------*/
 
 .bg-image {
-	background-image: url(../images/loginBackgroung.png);
-	background-position:top;
+	background-image: none;
+	background-color: #ffffff;
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-position: center center;
@@ -17,9 +17,9 @@
 	login-form
 ---------------------------------------*/
 .templatemo-login-form {  }
-.templatemo-login-form a { color: gray; }
+.templatemo-login-form a { color: #ffffff; }
 .templatemo-login-form a:hover {
-	color: black;
+	color: #ffffcc;
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -42,7 +42,7 @@
 	margin-bottom: 10px;
 	max-width: 100%;
 }
-.templatemo-login-form a { color: #DBDBDB; }
+
 .templatemo-login-form .form-control {
 	background-color: rgba(83, 78, 78, 0.35);
 	border: 1px solid rgba(255, 255, 255, 0.27);

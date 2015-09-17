@@ -2,10 +2,7 @@ package br.com.timbrasil.operations.models;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -19,6 +16,7 @@ public class Address implements Serializable {
 	private long id;
 	
 	@NotNull
+	@OneToOne
 	private City city;
 	
 	@NotEmpty

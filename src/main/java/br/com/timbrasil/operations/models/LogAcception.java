@@ -2,13 +2,7 @@ package br.com.timbrasil.operations.models;
 
 import java.util.Calendar;
 
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class LogAcception {
@@ -20,6 +14,7 @@ public class LogAcception {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar date;
 
+	@Transient
 	private CheckList checkList;
 	
 	@Enumerated

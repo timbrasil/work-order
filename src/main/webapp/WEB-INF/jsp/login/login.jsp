@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Centro de operações</title>
     <link rel="icon" href="<c:url value="/assets/images/favicon.ico"/>" />
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>">
@@ -13,7 +14,7 @@
 
 <body class="bg-image">
 	<div class="container">
-		<div class="col-md-12">
+		<div class="col-xs-12">
 			<form class="form-horizontal templatemo-login-form" role="form"
 				action="<c:url value="/login/autenticate"/>" method="POST">
 				<div class="row">
@@ -59,8 +60,8 @@
 						</c:if>
 						<div class="form-group">
 							<div class="col-md-6">
-								<a href="#" class="text-center btn btn-link">Esqueci a
-									senha</a>
+								<!--<a href="#" class="text-center btn btn-link">Esqueci a
+									senha</a> -->
 							</div>
 							<div class="col-md-6">
 								<a href='<c:url value="/user/form" />' class="text-center btn btn-link">Cadastre-se</a>

@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 
 /* enable absolute positioning */
 .inner-addon { 
@@ -22,8 +22,8 @@
 
 /* Background */
 .bg-image {
-    background-image: url(../images/loginBackgroung.png);
-    background-position:top;
+    background-image: none;
+    background-color: rgb(53, 65, 132);
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center center;
@@ -36,27 +36,27 @@
 
 /* Barra de Navegação */
 .navbar-default{
-    background-color: rgba(0, 0, 0, 0.61);
+    background-color: rgba(235, 235, 235, 1);
     background-image: none;
     border-color: transparent;
     border-radius: 0;
 }
 
 .navbar-default .navbar-brand {
-    color: #ffffff;
+    color: #000000;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #ebebeb;
+    color: #3e3e3e;
 }
 
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-    color: #b5b5b5;
+    color: #222222;
     background-color: transparent;
 }
 
 .dropdown-menu {
     background-clip: border-box;
-    background-color: rgba(238, 238, 238, 0.81);
+    background-color: rgba(238, 238, 238, 0.95);
 
 }

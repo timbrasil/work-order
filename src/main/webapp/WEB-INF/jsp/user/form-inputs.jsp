@@ -25,7 +25,7 @@
 
 <div class="form-group">
     <div class="col-md-12">
-        <label for="register" class="control-label">MatrÌcula:</label>
+        <label for="register" class="control-label">Matr√≠cula:</label>
         <div class="templatemo-input-icon-container">
             <input type="text" class="form-control" id="register" name="user.register"
                    placeholder="Ex.: F8012345" spellcheck="false"
@@ -58,12 +58,12 @@
 
 <div class="form-group">
     <div class="col-md-12">
-        <label for="region" class="control-label">Selecione sua regi„o:</label>
+        <label for="region" class="control-label">Selecione sua regi√£o:</label>
         <div class="templatemo-input-icon-container">
             <select name="user.region" id="region" class="form-control">
-                <option value="null" selected>Selecione uma regi„o</option>
+                <option value="null" selected>Selecione uma regi√£o</option>
                 <c:forEach items="${regions}" var="region">
-                    <option value="${region}">${region}</option>
+                    <option value="${region}">${region.nome}</option>
                 </c:forEach>
             </select>
         </div>

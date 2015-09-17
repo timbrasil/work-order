@@ -1,9 +1,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Centro de operações</title>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Centro de operaÃ§Ãµes</title>
     <link rel="icon" href="<c:url value="/assets/images/favicon.ico"/>" >
     <link rel="stylesheet"
           href="<c:url value="/assets/css/bootstrap.min.css"/>">
@@ -28,13 +30,13 @@
             </div>
             <%@include file="form-inputs.jsp" %>
             <div class="form-group">
-                <div class="col-md-12">
-                    <input type="submit" id="cadastrar" value="Cadastrar" class="btn btn-success pull-right col-md-12">
+                <div class="col-xs-12">
+                    <input type="submit" id="cadastrar" value="Cadastrar" class="btn btn-success col-xs-12">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12">
-                    <a class="btn btn-link" href="<c:url value="/login"/>">Voltar para página de login</a>
+                    <a class="btn btn-link" href="<c:url value="/login"/>">Voltar para pÃ¡gina de login</a>
                 </div>
             </div>
             
