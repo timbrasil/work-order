@@ -1,10 +1,11 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html >
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Centro de operações</title>
+  <title>Centro de operaÃ§Ãµes</title>
 
   <!-- bootstrap -->
   <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>">
@@ -26,19 +27,19 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<c:url value="/"/> ">Centro de Operações TIM</a>
+        <a class="navbar-brand" href="<c:url value="/"/> ">Centro de OperaÃ§Ãµes TIM</a>
       </div>
 
       <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WO - Aceitação<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WO - AceitaÃ§Ã£o<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                  <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Adicionar Aceitação</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Adicionar AceitaÃ§Ã£o</a></li>
 	              <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> Cadastrar CheckList</a></li>
 				  <li role="separator" class="divider"></li>
-	              <li><a href="#"><span class="glyphicon glyphicon-search"></span> Consultar Aceitação</a></li>
-	              <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Finalizar Aceitação</a></li>
+	              <li><a href="#"><span class="glyphicon glyphicon-search"></span> Consultar AceitaÃ§Ã£o</a></li>
+	              <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Finalizar AceitaÃ§Ã£o</a></li>
             </ul>
           </li>
         </ul>
