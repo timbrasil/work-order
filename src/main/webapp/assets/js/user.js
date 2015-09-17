@@ -5,7 +5,7 @@
 var user = {
     save: function (url,name,email,register,password,cpassword,region,area,redirect){
         var errors = "";
-        //Valida��es
+        //Validações
         if(name=="" || name==null){
             errors+="É necessário informar o nome do usuário<br>";
         }
@@ -28,7 +28,7 @@ var user = {
             errors+="É necessário informar a região do usuário<br>";
         }
         if(area=="" || area==null || area==0){
-            errors+="É necess�rio informar a área do usuário<br>";
+            errors+="É necessário informar a área do usuário<br>";
         }
         if(password!=cpassword){
             errors+="As senhas digitadas não coincidem<br>";
