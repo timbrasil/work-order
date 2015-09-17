@@ -50,8 +50,15 @@ public class LoginController {
 			validator.add(new SimpleMessage("Erro", "Email e/ou Senha inválidos"));
 			validator.onErrorRedirectTo(this).login();
         }
-        this.userSession.setUser(this.user);
+        this.userSession.logIn(this.user);
         result.redirectTo(HomeController.class).index();
+	}
+	
+	@Path("/logout")
+	public void logout(){
+		this.user = null;
+		this.userSession.logOut();
+		result.redirectTo(LoginController.class).login();
 	}
 	
 	public User getUser() {
