@@ -33,9 +33,9 @@
       <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WO - Aceitação<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aceitação<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                  <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> Adicionar Aceitação</a></li>
+                  <li><a href="<c:url value="/workOrder/form"/> "><span class="glyphicon glyphicon-plus-sign"></span> Cadastro de WorkOrder</a></li>
 	              <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> Cadastrar CheckList</a></li>
 				  <li role="separator" class="divider"></li>
 	              <li><a href="#"><span class="glyphicon glyphicon-search"></span> Consultar Aceitação</a></li>
