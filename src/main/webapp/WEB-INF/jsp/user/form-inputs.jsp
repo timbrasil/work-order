@@ -6,6 +6,7 @@
 		<label for="name" class="control-label">Nome Completo:</label>
 		<div class="templatemo-input-icon-container">
 			<input type="text" class="form-control" id="name" name="user.name"
+                   style="text-transform: capitalize"
 				   placeholder="Digite seu nome aqui" spellcheck="false"
 				   value="${user.name}" required>
 		</div>
@@ -17,6 +18,7 @@
 		<label for="email" class="control-label">Email:</label>
 		<div class="templatemo-input-icon-container">
 			<input type="email" class="form-control" id="email" name="user.email"
+                   style="text-transform: lowercase"
 				   placeholder="Digite seu email aqui" spellcheck="false"
 				   value="${user.email}" required>
 		</div>
@@ -29,6 +31,7 @@
         <label for="register" class="control-label">Matrícula:</label>
         <div class="templatemo-input-icon-container">
             <input type="text" class="form-control" id="register" name="user.register"
+                   style="text-transform: uppercase"
                    placeholder="Ex.: F8012345" spellcheck="false"
                    value="${user.register}" required>
         </div>
