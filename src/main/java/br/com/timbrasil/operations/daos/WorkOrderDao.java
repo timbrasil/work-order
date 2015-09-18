@@ -1,6 +1,7 @@
 package br.com.timbrasil.operations.daos;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.com.timbrasil.operations.models.WorkOrder;
@@ -10,6 +11,7 @@ public class WorkOrderDao {
 	
 	private final EntityManager manager;
 
+	@Inject
 	public WorkOrderDao(EntityManager manager) {
 		this.manager = manager;
 	}

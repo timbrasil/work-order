@@ -1,9 +1,6 @@
 package br.com.timbrasil.operations.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,12 +8,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class TypeWorkOrder {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@ManyToOne
-	private WorkOrder workOrder;
-	
+
 	@NotEmpty
 	private String name;
 	

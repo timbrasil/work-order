@@ -21,10 +21,7 @@ public class LogStatus implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@ManyToOne
-	private WorkOrder workOrder;
-		
+
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Calendar atribution;
