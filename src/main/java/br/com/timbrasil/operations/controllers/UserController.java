@@ -2,11 +2,15 @@ package br.com.timbrasil.operations.controllers;
 
 import static br.com.caelum.vraptor.view.Results.json;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
@@ -16,10 +20,8 @@ import br.com.timbrasil.operations.models.Area;
 import br.com.timbrasil.operations.models.Region;
 import br.com.timbrasil.operations.models.User;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Controller
+@Path("/user")
 public class UserController {
 	
 	private final UserSession userSession;
@@ -42,14 +44,35 @@ public class UserController {
 		this(null,null,null,null);
 	}
 	
+	public void loadFormDependecies(){
+		result.include("regions" , Region.values());
+		result.include("areas", Area.values());
+	}
+	
 	@Get
 	@Public
 	public void form(){
 		if(userSession.isLogged()){
 			result.redirectTo(HomeController.class).index();
 		}
-		result.include("regions" , Region.values());
-		result.include("areas", Area.values());
+		loadFormDependecies();
+	}
+	
+	@Get("/{user.id}")
+	public void formUpdate(User user){
+		loadFormDependecies();
+		result.include("user", dao.find(user.getId()));
+	}
+	
+	@Post("/update/{id}")
+	//@Put("/update/{id}")
+	public void update(long id,@Valid User user, String cpassword){
+		user.setId(id);
+		validator.onErrorForwardTo(this).formUpdate(user);
+		
+		user = dao.update(user);
+		
+		result.redirectTo(this).formUpdate(user);
 	}
 	
 	@Post

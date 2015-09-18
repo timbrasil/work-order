@@ -46,6 +46,10 @@ public class UserDao {
 			return null;
 		}
 	}
+
+	public User update(User user) {
+		return manager.merge(user);
+	}
 	
 
 }

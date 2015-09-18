@@ -3,7 +3,7 @@
  */
 
 var user = {
-    save: function (url,name,email,register,password,cpassword,region,area,redirect){
+    save: function (url,name,email,register,password,cpassword,region,area,redirect,type){
         var errors = "";
         //Validações
         if(name=="" || name==null){
@@ -50,7 +50,7 @@ var user = {
 
         $.ajax({
             url: url,
-            type: "POST",
+            type: type,
             async: false,
             datatype: "JSON",
             data: {
