@@ -30,6 +30,9 @@ public class WorkOrder implements Serializable {
 	@NotNull
 	private Site site;
 	
+	@NotNull
+	private Address address;
+	
 	@OneToMany
 	private List<TypeWorkOrder> types;
 
@@ -38,9 +41,6 @@ public class WorkOrder implements Serializable {
 	
 	@OneToMany
 	private List<LogAcception> logAcception;
-	
-	@NotNull
-	private Address address;
 	
 	public WorkOrder(String ticketId, Technology technology, Site site, List<TypeWorkOrder> types, Address address, LogStatus logStatus) {
 		this.ticketId = ticketId;

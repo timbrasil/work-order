@@ -3,6 +3,7 @@ package br.com.timbrasil.operations.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -12,6 +13,9 @@ public class TypeWorkOrder {
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	@ManyToOne
+	private WorkOrder workOrder;
 	
 	@NotEmpty
 	private String name;
