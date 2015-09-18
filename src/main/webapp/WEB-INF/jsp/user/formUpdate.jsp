@@ -31,7 +31,7 @@
             <%@include file="form-inputs.jsp" %>
             <div class="form-group">
                 <div class="col-xs-12">
-                    <input type="submit" id="cadastrar" value="Cadastrar" class="btn btn-success col-xs-12">
+                    <input type="submit" id="atualizar" value="Atualizar" class="btn btn-success col-xs-12">
                 </div>
             </div>
             <div class="form-group">
@@ -55,9 +55,9 @@
 <script src="<c:url value="/assets/js/user.js"/>"></script>
 
 <script>
-    $("#cadastrar").on("click",function(){
+    $("#atualizar").on("click",function(){
         user.save(
-                '<c:url value="/user/save"/>',
+                '<c:url value="/user/update/${user.id}"/>',
                 $("#name").val(),
                 $("#email").val(),
                 $("#register").val(),

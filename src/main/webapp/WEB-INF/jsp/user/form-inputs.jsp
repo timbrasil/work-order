@@ -1,6 +1,8 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<input type="hidden" id="id" name="user.id" value="${user.id}">
+
 <div class="form-group">
 	<div class="col-md-12">
 		<label for="name" class="control-label">Nome Completo:</label>
@@ -67,7 +69,7 @@
             <select name="user.region" id="region" class="form-control">
                 <option value="null" selected>Selecione uma região</option>
                 <c:forEach items="${regions}" var="region">
-                    <option value="${region}">${region.nome}</option>
+                    <option value="${region}" ${region == user.region ? 'selected' : ''}>${region.nome}</option>
                 </c:forEach>
             </select>
         </div>
@@ -81,7 +83,7 @@
             <select name="user.area" id="area" class="form-control">
                 <option value="null" selected>Selecione uma area</option>
                 <c:forEach items="${areas}" var="area">
-                    <option value="${area}">${area}</option>
+                    <option value="${area}" ${area == user.area ? 'selected' : ''} }>${area}</option>
                 </c:forEach>
             </select>
         </div>

@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "\"User\"", indexes = {
+@Table(name = "\"user\"", indexes = {
 		@Index(name = "email_index", columnList = "email"),
 		@Index(name = "register_index", columnList = "register") })
 public class User implements Serializable {
