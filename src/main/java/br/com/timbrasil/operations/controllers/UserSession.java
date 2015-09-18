@@ -18,6 +18,10 @@ public class UserSession implements Serializable {
 		return user != null;
 	}
 	
+	public String getEmail(){
+		return this.user.getEmail();
+	}
+	
 	public void logIn(User user){
 		this.user = user;
 	}
