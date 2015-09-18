@@ -16,7 +16,7 @@ public class Address implements Serializable {
 	private long id;
 	
 	@NotNull
-	@OneToOne
+	@ManyToOne
 	private City city;
 	
 	@NotEmpty
