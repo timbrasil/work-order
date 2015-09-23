@@ -28,7 +28,7 @@ public class WorkOrder implements Serializable {
 	@ManyToOne
 	private Address address;
 	
-	@OneToMany
+	@ManyToMany
 	private List<TypeWorkOrder> typeWorkOrders;
 
 	@OneToMany

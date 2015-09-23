@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.com.timbrasil.operations.models.WorkOrder;
+import org.hibernate.HibernateException;
 
 @RequestScoped
 public class WorkOrderDao {
@@ -24,7 +25,7 @@ public class WorkOrderDao {
 		this(null);
 	}
 	
-	public void save(WorkOrder workOrder){
+	public void save(WorkOrder workOrder) throws HibernateException{
 		manager.persist(workOrder);
 	}
 	
