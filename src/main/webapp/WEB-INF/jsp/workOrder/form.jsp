@@ -32,7 +32,7 @@
             typeAcception.push(this.id);
         });
         workOrder.save(
-                '<c:url value="/workOrder/save"/>',
+                '<c:url value="/workOrder/form"/>',
                 '<c:url value="/workOrder"/>',
                 'POST',
                 'workOrderAdd'

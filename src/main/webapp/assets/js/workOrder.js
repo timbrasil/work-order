@@ -4,8 +4,7 @@
 
 var workOrder = {
     save: function (url,redirect,type,formId){
-        validate.requiredInputs();
-        validate.requiredSelects();
+        validate.checkAll();
 
         //Validações
         if(ticketId<0) {

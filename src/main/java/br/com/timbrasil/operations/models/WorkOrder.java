@@ -20,6 +20,10 @@ public class WorkOrder implements Serializable {
 	@NotEmpty
 	private String ticketId;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Technology technology;
+
 	@NotNull
     @ManyToOne
 	private Site site;
@@ -33,12 +37,13 @@ public class WorkOrder implements Serializable {
 	@OneToMany
 	private List<LogAcception> logAcception;
 	
-	public WorkOrder(String ticketId, Site site, List<TypeWorkOrder> typeWorkOrders,LogStatus logStatus) {
+	public WorkOrder(String ticketId, Site site, List<TypeWorkOrder> typeWorkOrders,LogStatus logStatus, Technology technology) {
 		this.ticketId = ticketId;
 		this.site = site;
 		this.typeWorkOrders = typeWorkOrders;
 		this.logStatus = new ArrayList<LogStatus>();
 		this.logStatus.add(logStatus);
+        this.technology = technology;
 	}
 	
 	/**
@@ -97,11 +102,20 @@ public class WorkOrder implements Serializable {
         this.logAcception = logAcception;
     }
 
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
+    }
+
     @Override
     public String toString() {
         return "WorkOrder{" +
                 "id=" + id +
                 ", ticketId='" + ticketId + '\'' +
+                ", technology=" + technology +
                 ", site=" + site +
                 ", typeWorkOrders=" + typeWorkOrders +
                 ", logStatus=" + logStatus +

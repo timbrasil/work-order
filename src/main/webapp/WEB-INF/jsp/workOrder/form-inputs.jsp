@@ -15,9 +15,18 @@
                 </div>
                 <div class="col-md-12">
                     <label for="atributionDate" class="control-label">Data de atribuição:</label>
-                    <input type="date" class="form-control input-sm" id="atributionDate"
+                    <input type="text" class="form-control input-sm date" id="atributionDate"
                            spellcheck="false" name="logStatus.atribution"
                            value="${logStatus.atribution}" required>
+                </div>
+                <div class="col-md-12">
+                    <label for="WorkOrderTechnology" class="control-label">Tecnologia sendo implantada:</label>
+                    <select id="WorkOrderTechnology" class="form-control input-sm" name="workOrder.technology" required>
+                        <option value="null" selected>Selecione uma Tecnologia</option>
+                        <c:forEach items="${technologys}" var="technology">
+                            <option value="${technology}">${technology.nome}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div class="col-md-12">
                     <label class="control-label">Tipo de aceitação:</label>
@@ -46,12 +55,12 @@
                     <input type="text" class="form-control input-sm" id="site"
                            style="text-transform: uppercase"
                            spellcheck="false" name="site.name"
-                           size="12" maxlength="12"
+                           size="12" maxlength="12" autocomplete="off"
                            value="${site.name}" required>
                 </div>
                 <div class="col-md-12">
-                    <label for="technology" class="control-label">Tecnologia:</label>
-                    <select id="technology" class="form-control input-sm" name="site.technology" required>
+                    <label for="SiteTechnology" class="control-label">Tecnologia do Site:</label>
+                    <select id="SiteTechnology" class="form-control input-sm" name="site.technology" required>
                         <option value="null" selected>Selecione uma Tecnologia</option>
                         <c:forEach items="${technologys}" var="technology">
                             <option value="${technology}">${technology.nome}</option>
@@ -79,16 +88,32 @@
     </div>
 </div>
 <script>
-    $("#site").on("keyup",function(){
+    var site = $("#site");
+    site.on("keyup",function(){
+        searchSite($(this));
+    });
+    site.on("change",function(){
+        searchSite($(this));
+    });
+    function searchSite(inputElement){
+        var technology = $("#SiteTechnology");
+        var city = $("#city");
+        var address = $("#address");
+        if(inputElement.val().length==0){
+            technology.prop("disabled",false);
+            technology.val("null");
+            city.prop("disabled",false);
+            city.val("null");
+            address.prop("disabled",false);
+            address.val("");
+            return 0;
+        }
         $.ajax({
             url: '<c:url value="/site/name"/>',
             type: "GET",
-            data: {'site.name':$(this).val()},
+            data: {'site.name':inputElement.val()},
             datatype: "JSON",
             success: function (response) {
-                var technology = $("#technology");
-                var city = $("#city");
-                var address = $("#address");
                 if(response.status){
                     technology.val(response.data.technology);
                     technology.prop("disabled",true);
@@ -108,5 +133,5 @@
 
             }
         });
-    })
+    }
 </script>
