@@ -11,9 +11,6 @@ public class LogAcception {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToOne
-	private WorkOrder workOrder;
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar date;
 

@@ -46,4 +46,46 @@ public class LogStatus implements Serializable {
 	public LogStatus(){
 		
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Calendar getAtribution() {
+		return atribution;
+	}
+
+	public void setAtribution(Calendar atribution) {
+		this.atribution = atribution;
+	}
+
+	public Calendar getExecution() {
+		return execution;
+	}
+
+	public void setExecution(Calendar execution) {
+		this.execution = execution;
+	}
+
+	public StatusWorkOrder getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusWorkOrder status) {
+		this.status = status;
+	}
+
+    @Override
+    public String toString() {
+        return "LogStatus{" +
+                "id=" + id +
+                ", atribution=" + atribution +
+                ", execution=" + execution +
+                ", status=" + status +
+                '}';
+    }
 }

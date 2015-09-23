@@ -4,12 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,11 +19,9 @@ public class WorkOrder implements Serializable {
 	
 	@NotEmpty
 	private String ticketId;
-	
+
 	@NotNull
-	private Technology technology;
-	
-	@NotNull
+    @ManyToOne
 	private Site site;
 	
 	@NotNull
@@ -36,7 +29,7 @@ public class WorkOrder implements Serializable {
 	private Address address;
 	
 	@OneToMany
-	private List<TypeWorkOrder> types;
+	private List<TypeWorkOrder> typeWorkOrders;
 
 	@OneToMany
 	private List<LogStatus> logStatus;
@@ -44,11 +37,10 @@ public class WorkOrder implements Serializable {
 	@OneToMany
 	private List<LogAcception> logAcception;
 	
-	public WorkOrder(String ticketId, Technology technology, Site site, List<TypeWorkOrder> types, Address address, LogStatus logStatus) {
+	public WorkOrder(String ticketId, Site site, List<TypeWorkOrder> typeWorkOrders, Address address, LogStatus logStatus) {
 		this.ticketId = ticketId;
-		this.technology = technology;
 		this.site = site;
-		this.types = types;
+		this.typeWorkOrders = typeWorkOrders;
 		this.address = address;
 		this.logStatus = new ArrayList<LogStatus>();
 		this.logStatus.add(logStatus);
@@ -62,68 +54,80 @@ public class WorkOrder implements Serializable {
 		
 	}
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getTicketId() {
-		return ticketId;
-	}
+    public String getTicketId() {
+        return ticketId;
+    }
 
-	public void setTicketId(String ticketId) {
-		this.ticketId = ticketId;
-	}
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
+    }
 
-	public Technology getTechnology() {
-		return technology;
-	}
 
-	public void setTechnology(Technology technology) {
-		this.technology = technology;
-	}
+    public Site getSite() {
+        return site;
+    }
 
-	public Site getSite() {
-		return site;
-	}
+    public void setSite(Site site) {
+        this.site = site;
+    }
 
-	public void setSite(Site site) {
-		this.site = site;
-	}
+    public Address getAddress() {
+        return address;
+    }
 
-	public List<TypeWorkOrder> getTypes() {
-		return types;
-	}
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-	public void setTypes(List<TypeWorkOrder> types) {
-		this.types = types;
-	}
+    public List<TypeWorkOrder> getTypeWorkOrders() {
+        return typeWorkOrders;
+    }
 
-	public List<LogStatus> getLogStatus() {
-		return logStatus;
-	}
+    public void setTypeWorkOrders(List<TypeWorkOrder> typeWorkOrders) {
+        this.typeWorkOrders = typeWorkOrders;
+    }
 
-	public void setLogStatus(List<LogStatus> logStatus) {
-		this.logStatus = logStatus;
-	}
+    public List<LogStatus> getLogStatus() {
+        return logStatus;
+    }
 
-	public List<LogAcception> getLogList() {
-		return logAcception;
-	}
+    public void setLogStatus(List<LogStatus> logStatus) {
+        this.logStatus = logStatus;
+    }
 
-	public void setLogList(List<LogAcception> logList) {
-		this.logAcception = logList;
-	}
+    public List<LogAcception> getLogAcception() {
+        return logAcception;
+    }
 
-	public Address getAddress() {
-		return address;
-	}
+    public void setLogAcception(List<LogAcception> logAcception) {
+        this.logAcception = logAcception;
+    }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	
+    @Override
+    public String toString() {
+        return "WorkOrder{" +
+                "id=" + id +
+                ", ticketId='" + ticketId + '\'' +
+                ", site=" + site +
+                ", address=" + address +
+                ", typeWorkOrders=" + typeWorkOrders +
+                ", logStatus=" + logStatus +
+                ", logAcception=" + logAcception +
+                '}';
+    }
+
+    public void pushLogStatus(LogStatus logStatus) {
+        if(this.logStatus==null){
+            this.logStatus = new ArrayList<LogStatus>();
+        }
+        this.logStatus.add(logStatus);
+    }
 }

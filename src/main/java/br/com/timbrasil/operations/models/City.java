@@ -59,4 +59,13 @@ public class City {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "City{" +
+				"id=" + id +
+				", state=" + state +
+				", name='" + name + '\'' +
+				", ddd=" + ddd +
+				'}';
+	}
 }

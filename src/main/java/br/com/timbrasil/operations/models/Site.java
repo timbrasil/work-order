@@ -64,4 +64,12 @@ public class Site implements Serializable{
 		this.technology = technology;
 	}
 
+	@Override
+	public String toString() {
+		return "Site{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", technology=" + technology +
+				'}';
+	}
 }

@@ -3,7 +3,7 @@
 
 <div class="container bg-white thumbnail box">
     <div class="col-md-12">
-        <form class="form-horizontal" role="form"
+        <form id="workOrderAdd" class="form-horizontal" role="form"
               action="javascript:void(0)" autocomplete="on">
             <div class="form-group text-center bg-primary">
                 <div class="col-md-12">
@@ -13,7 +13,7 @@
             </div>
             <%@include file="form-inputs.jsp" %>
             <div class="form-group">
-                <div class="col-xs-12 col-md-3 pull-right">
+                <div class="col-xs-12">
                     <input type="submit" id="cadastrar" value="Cadastrar" class="btn btn-success col-xs-12">
                 </div>
             </div>
@@ -24,5 +24,19 @@
         </form>
     </div>
 </div>
-
+<script src="<c:url value="/assets/js/workOrder.js"/>"></script>
+<script>
+    $("#cadastrar").on("click",function(){
+        var typeAcception = [];
+        $('input[name=typeAcception]:checked').each(function() {
+            typeAcception.push(this.id);
+        });
+        workOrder.save(
+                '<c:url value="/workOrder/save"/>',
+                '<c:url value="/"/>',
+                'POST',
+                'workOrderAdd'
+        );
+    })
+</script>
 <%@include file="../footer.jsp" %>

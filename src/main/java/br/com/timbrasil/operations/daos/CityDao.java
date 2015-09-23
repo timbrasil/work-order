@@ -27,6 +27,10 @@ public class CityDao {
         this(null);
     }
 
+    public City find(City city){
+        return manager.find(City.class,city.getId());
+    }
+
     public List<City> list(){
         String jpql = "select c from City as c";
         TypedQuery<City> typedQuery = manager.createQuery(jpql,City.class);
