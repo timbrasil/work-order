@@ -38,6 +38,9 @@ var workOrder = {
                     modal.show();
                     modal.find('.modal-dismiss').on("click",function(){window.location = redirect})
                 }
+                else{
+                    showError(response.error);
+                }
             }
         });
     }

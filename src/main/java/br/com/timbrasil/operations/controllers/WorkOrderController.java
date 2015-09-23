@@ -9,8 +9,6 @@ import br.com.timbrasil.operations.daos.*;
 import br.com.timbrasil.operations.models.*;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +42,7 @@ public class WorkOrderController {
 
     @Deprecated
     public WorkOrderController() {
-        this(null,null,null,null,null,null,null,null);
+        this(null, null, null, null, null, null, null, null);
     }
 
     @Get
@@ -55,23 +53,26 @@ public class WorkOrderController {
     }
 
     @Post
-    public void save(WorkOrder workOrder,Site site,City city, Address address,List<TypeWorkOrder> typeWorkOrder,LogStatus logStatus){
+    public void save(WorkOrder workOrder,Site site,City city,Address address,List<TypeWorkOrder> typeWorkOrder,LogStatus logStatus){
         Map<String, Object> aMap = new HashMap<String, Object>();
         try {
             //Site
             if(siteDao.find(site)==null){
+                System.out.println("Site não encontrado");
+                //City
+                city = cityDao.find(city);
+
+                //Address
+                address.setCity(city);
+                addressDao.save(address);
+
+                site.setAddress(address);
                 siteDao.save(site);
             }
             else{
                 site = siteDao.find(site);
+                System.out.println("Site encontrado: "+site);
             }
-
-            //City
-            city = cityDao.find(city);
-
-            //Address
-            address.setCity(city);
-            addressDao.save(address);
 
             //LogStatus
             logStatus.setStatus(StatusWorkOrder.WORKING);
@@ -79,16 +80,10 @@ public class WorkOrderController {
 
             //WorkOrder
             workOrder.setSite(site);
-            workOrder.setAddress(address);
             workOrder.pushLogStatus(logStatus);
-            System.out.print(typeWorkOrder);
             workOrder.setTypeWorkOrders(typeWorkOrder);
 
             workOrderDao.save(workOrder);
-
-
-            System.out.println(workOrder);
-
 
             if(validator.hasErrors()) {
                 aMap.put("status",false);

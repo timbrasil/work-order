@@ -2,12 +2,7 @@ package br.com.timbrasil.operations.models;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -26,6 +21,10 @@ public class Site implements Serializable{
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Technology technology;
+
+	@NotNull
+	@OneToOne
+	private Address address;
 	
 	/**
 	 * Hibernate only
@@ -35,9 +34,10 @@ public class Site implements Serializable{
 		
 	}
 
-	public Site(String name, Technology technology) {
+	public Site(String name, Technology technology, Address address) {
 		this.name = name;
 		this.technology = technology;
+		this.address = address;
 	}
 
 	public long getId() {
@@ -53,7 +53,7 @@ public class Site implements Serializable{
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.toUpperCase();
 	}
 
 	public Technology getTechnology() {
@@ -64,12 +64,21 @@ public class Site implements Serializable{
 		this.technology = technology;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "Site{" +
 				"id=" + id +
 				", name='" + name + '\'' +
 				", technology=" + technology +
+				", address=" + address +
 				'}';
 	}
 }

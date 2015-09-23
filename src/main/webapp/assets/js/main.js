@@ -50,3 +50,10 @@ var validate = {
         validate.errors.push(error);
     }
 };
+
+function showError(msg){
+    var modal = $("#alertModal").modal();
+    modal.find('.modal-title').text('Occoreu um erro ao tentar executar a operação');
+    modal.find('.modal-body').html(msg);
+    modal.show();
+}

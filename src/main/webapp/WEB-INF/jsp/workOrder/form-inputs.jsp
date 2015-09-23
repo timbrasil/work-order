@@ -78,3 +78,35 @@
         </div>
     </div>
 </div>
+<script>
+    $("#site").on("keyup",function(){
+        $.ajax({
+            url: '<c:url value="/site/name"/>',
+            type: "GET",
+            data: {'site.name':$(this).val()},
+            datatype: "JSON",
+            success: function (response) {
+                var technology = $("#technology");
+                var city = $("#city");
+                var address = $("#address");
+                if(response.status){
+                    technology.val(response.data.technology);
+                    technology.prop("disabled",true);
+                    city.val(response.data.address.city.id);
+                    city.prop("disabled",true);
+                    address.val(response.data.address.street);
+                    address.prop("disabled",true);
+                }
+                else{
+                    technology.prop("disabled",false);
+                    technology.val("null");
+                    city.prop("disabled",false);
+                    city.val("null");
+                    address.prop("disabled",false);
+                    address.val("");
+                }
+
+            }
+        });
+    })
+</script>

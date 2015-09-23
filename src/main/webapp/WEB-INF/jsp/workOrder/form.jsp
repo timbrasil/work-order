@@ -33,10 +33,10 @@
         });
         workOrder.save(
                 '<c:url value="/workOrder/save"/>',
-                '<c:url value="/"/>',
+                '<c:url value="/workOrder"/>',
                 'POST',
                 'workOrderAdd'
         );
-    })
+    });
 </script>
 <%@include file="../footer.jsp" %>

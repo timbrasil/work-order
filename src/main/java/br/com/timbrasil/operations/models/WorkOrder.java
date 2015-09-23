@@ -24,10 +24,6 @@ public class WorkOrder implements Serializable {
     @ManyToOne
 	private Site site;
 	
-	@NotNull
-	@ManyToOne
-	private Address address;
-	
 	@ManyToMany
 	private List<TypeWorkOrder> typeWorkOrders;
 
@@ -37,11 +33,10 @@ public class WorkOrder implements Serializable {
 	@OneToMany
 	private List<LogAcception> logAcception;
 	
-	public WorkOrder(String ticketId, Site site, List<TypeWorkOrder> typeWorkOrders, Address address, LogStatus logStatus) {
+	public WorkOrder(String ticketId, Site site, List<TypeWorkOrder> typeWorkOrders,LogStatus logStatus) {
 		this.ticketId = ticketId;
 		this.site = site;
 		this.typeWorkOrders = typeWorkOrders;
-		this.address = address;
 		this.logStatus = new ArrayList<LogStatus>();
 		this.logStatus.add(logStatus);
 	}
@@ -70,21 +65,12 @@ public class WorkOrder implements Serializable {
         this.ticketId = ticketId;
     }
 
-
     public Site getSite() {
         return site;
     }
 
     public void setSite(Site site) {
         this.site = site;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public List<TypeWorkOrder> getTypeWorkOrders() {
@@ -117,7 +103,6 @@ public class WorkOrder implements Serializable {
                 "id=" + id +
                 ", ticketId='" + ticketId + '\'' +
                 ", site=" + site +
-                ", address=" + address +
                 ", typeWorkOrders=" + typeWorkOrders +
                 ", logStatus=" + logStatus +
                 ", logAcception=" + logAcception +
