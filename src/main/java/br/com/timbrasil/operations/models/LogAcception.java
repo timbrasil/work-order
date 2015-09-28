@@ -1,8 +1,10 @@
 package br.com.timbrasil.operations.models;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class LogAcception {
@@ -14,19 +16,23 @@ public class LogAcception {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar date;
 
-	@Transient
-	private CheckList checkList;
+	@NotNull
+	@OneToMany
+	private List<AnswerItemCheckList> answerItemCheckList;
+
+	@Enumerated(EnumType.STRING)
+	private LogAcceptionType logAcceptionType;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private StatusAcception status;
-	
-	
-	public LogAcception(Calendar date, CheckList checkList, StatusAcception status) {
+
+	public LogAcception(Calendar date, List<AnswerItemCheckList> answerItemCheckList, LogAcceptionType logAcceptionType, StatusAcception status) {
 		this.date = date;
-		this.checkList = checkList;
+		this.answerItemCheckList = answerItemCheckList;
+		this.logAcceptionType = logAcceptionType;
 		this.status = status;
 	}
-	
+
 	/**
 	 * Hibernate Only
 	 */
@@ -51,12 +57,20 @@ public class LogAcception {
 		this.date = date;
 	}
 
-	public CheckList getCheckList() {
-		return checkList;
+	public List<AnswerItemCheckList> getAnswerItemCheckList() {
+		return answerItemCheckList;
 	}
 
-	public void setCheckList(CheckList checkList) {
-		this.checkList = checkList;
+	public void setAnswerItemCheckList(List<AnswerItemCheckList> answerItemCheckList) {
+		this.answerItemCheckList = answerItemCheckList;
+	}
+
+	public LogAcceptionType getLogAcceptionType() {
+		return logAcceptionType;
+	}
+
+	public void setLogAcceptionType(LogAcceptionType logAcceptionType) {
+		this.logAcceptionType = logAcceptionType;
 	}
 
 	public StatusAcception getStatus() {
