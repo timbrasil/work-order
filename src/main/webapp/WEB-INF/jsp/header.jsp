@@ -1,11 +1,12 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Centro de operações</title>
+    <link rel="icon" href="<c:url value="/assets/images/favicon.ico"/>">
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>">
@@ -37,7 +38,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value="/workOrder/form"/> "><span class="glyphicon glyphicon-plus-sign"></span> Cadastro de WorkOrder</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> Cadastrar CheckList</a></li>
+                        <li><a href="<c:url value="/checkListModel/form"/>"><span class="glyphicon glyphicon-th-list"></span> Cadastrar Modelo de CheckList</a></li>
+                        <li role="separator" class="divider"></li>
                         <li><a href="#"><span class="glyphicon glyphicon-search"></span> Consultar Aceitação</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Finalizar Aceitação</a></li>
                     </ul>

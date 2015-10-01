@@ -12,18 +12,10 @@ public class ItemCheckList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    private ItemCheckList parent;
-
-    @OneToMany
-    private List<ItemCheckList> childrens;
-
     @NotEmpty
     private String description;
 
-    public ItemCheckList(ItemCheckList parent, List<ItemCheckList> childrens, String description) {
-        this.parent = parent;
-        this.childrens = childrens;
+    public ItemCheckList(String description) {
         this.description = description;
     }
 
@@ -42,27 +34,19 @@ public class ItemCheckList {
         this.id = id;
     }
 
-    public ItemCheckList getParent() {
-        return parent;
-    }
-
-    public void setParent(ItemCheckList parent) {
-        this.parent = parent;
-    }
-
-    public List<ItemCheckList> getChildrens() {
-        return childrens;
-    }
-
-    public void setChildrens(List<ItemCheckList> childrens) {
-        this.childrens = childrens;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemCheckList{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

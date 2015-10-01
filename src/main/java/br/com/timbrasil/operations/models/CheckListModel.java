@@ -10,6 +10,7 @@ import java.util.List;
 public class CheckListModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
@@ -76,5 +77,16 @@ public class CheckListModel {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "CheckListModel{" +
+                "id=" + id +
+                ", itemsCheckList=" + itemsCheckList +
+                ", description='" + description + '\'' +
+                ", technology=" + technology +
+                ", active=" + active +
+                '}';
     }
 }

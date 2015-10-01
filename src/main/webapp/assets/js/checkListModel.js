@@ -1,14 +1,17 @@
-/**
- * Created by IgorVasconcelos on 22/09/2015.
- */
-
-var workOrder = {
-    save: function (url,redirect,type,formId){
+var checkListModel = {
+    addItemsCheckList: function(){
+        $("#placeModelItemsCheckList").append($("#DOM_ModelItemCheckList").html());
+        $(".removeItemCheckList").unbind("click",checkListModel.removeItemsCheckList).on("click",checkListModel.removeItemsCheckList());
+    },
+    removeItemsCheckList: function(){
+        $(this).parents('.DOM_ModelItemCheckList').remove();
+        $(".removeItemCheckList").unbind("click",checkListModel.removeItemsCheckList).on("click",checkListModel.removeItemsCheckList);
+    },
+    save: function(url,redirect,type,formId){
         validate.checkAll(formId);
 
-        //Validações
-        if(ticketId<0) {
-            validate.putError("Número do TicketId Inválido.");
+        if($("#"+formId+" .DOM_ModelItemCheckList").length <1){
+            validate.putError("É necessário ao menos 1 Item para inserir o Modelo de CheckList.");
         }
 
         if(!validate.isValidate()){

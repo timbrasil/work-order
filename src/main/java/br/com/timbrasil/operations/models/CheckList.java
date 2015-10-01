@@ -8,6 +8,7 @@ import java.util.List;
 public class CheckList {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @OneToMany

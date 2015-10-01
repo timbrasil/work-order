@@ -58,7 +58,6 @@ public class WorkOrderController {
         try {
             //Site
             if(siteDao.find(site)==null){
-                System.out.println("Site não encontrado");
                 //City
                 city = cityDao.find(city);
 
@@ -71,7 +70,6 @@ public class WorkOrderController {
             }
             else{
                 site = siteDao.find(site);
-                System.out.println("Site encontrado: "+site);
             }
 
             //LogStatus

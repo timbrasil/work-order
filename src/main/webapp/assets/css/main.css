@@ -65,3 +65,8 @@
     border-radius: 0;
     min-height: 510px;
 }
+
+.text-area{
+    resize: vertical;
+    min-height: 30px;
+}

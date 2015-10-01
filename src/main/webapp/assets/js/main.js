@@ -1,42 +1,66 @@
-/**
- * Created by IgorVasconcelos on 16/09/2015.
- */
 
 var validate = {
     errors: [],
     checkAll: function (formId) {
         validate.requiredInputs(formId);
         validate.requiredSelects(formId);
+        validate.requiredTextArea(formId);
         validate.date(formId);
     },
     cleanErros: function(){
         validate.errors = [];
     },
     requiredInputs: function(formId){
+        var element = "";
         if(typeof formId == "undefined"){
-            formId="";
+            element = 'input:required';
         }
-        $(formId + ' input:required').each(function(){
+        else{
+            element = '#' + formId + ' input:required';
+        }
+        $(element).each(function(){
             if($(this).val()=="" || $(this).val()==null){
                 validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório.");
             }
         });
     },
     requiredSelects: function(formId){
+        var element = "";
         if(typeof formId == "undefined"){
-            formId="";
+            element = 'select:required';
         }
-        $(formId + ' select:required').each(function(){
+        else{
+            element = '#' + formId + ' select:required';
+        }
+        $(element).each(function(){
+            if($(this).val()=="" || $(this).val()==null || $(this).val()=="null"){
+                validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório.");
+            }
+        });
+    },
+    requiredTextArea: function(formId){
+        var element = "";
+        if(typeof formId == "undefined"){
+            element = 'textarea:required';
+        }
+        else{
+            element = '#' + formId + ' textarea:required';
+        }
+        $(element).each(function(){
             if($(this).val()=="" || $(this).val()==null || $(this).val()=="null"){
                 validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório.");
             }
         });
     },
     date: function (formId) {
+        var element = "";
         if(typeof formId == "undefined"){
-            formId="";
+            element = '.date';
         }
-        $(formId + ' .date').each(function(){
+        else{
+            element = '#' + formId + ' .date';
+        }
+        $(element).each(function(){
             dateString= $(this).val();
             // First check for the pattern
             if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)){
@@ -97,9 +121,18 @@ var validate = {
     }
 };
 
-function showError(msg){
-    var modal = $("#alertModal").modal();
-    modal.find('.modal-title').text('Occoreu um erro ao tentar executar a operação');
-    modal.find('.modal-body').html(msg);
-    modal.show();
-}
+var show = {
+    success: function(title,body,redirect){
+        var modal = $("#alertModal").modal({keyboard:false});
+        modal.find('.modal-title').text(title);
+        modal.find('.modal-body').html(body);
+        modal.show();
+        modal.find('.modal-dismiss').on("click",function(){window.location = redirect})
+    },
+    error: function(title,msg){
+        var modal = $("#alertModal").modal();
+        modal.find('.modal-title').text(title);
+        modal.find('.modal-body').html(msg);
+        modal.show();
+    }
+};
