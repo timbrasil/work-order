@@ -3,6 +3,7 @@
 
 <div class="container bg-white thumbnail box">
     <div class="col-md-12">
+
         <form id="workOrderAdd" class="form-horizontal" role="form"
               action="javascript:void(0)" autocomplete="on">
             <div class="form-group text-center bg-primary">

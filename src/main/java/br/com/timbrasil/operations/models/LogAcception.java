@@ -1,5 +1,7 @@
 package br.com.timbrasil.operations.models;
 
+import org.hibernate.annotations.Check;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,8 +19,8 @@ public class LogAcception {
 	private Calendar date;
 
 	@NotNull
-	@OneToMany
-	private List<AnswerItemCheckList> answerItemCheckList;
+	@OneToOne
+	private CheckList checkList;
 
 	@Enumerated(EnumType.STRING)
 	private LogAcceptionType logAcceptionType;
@@ -26,9 +28,9 @@ public class LogAcception {
 	@Enumerated(EnumType.STRING)
 	private StatusAcception status;
 
-	public LogAcception(Calendar date, List<AnswerItemCheckList> answerItemCheckList, LogAcceptionType logAcceptionType, StatusAcception status) {
+	public LogAcception(Calendar date, CheckList checkList, LogAcceptionType logAcceptionType, StatusAcception status) {
 		this.date = date;
-		this.answerItemCheckList = answerItemCheckList;
+		this.checkList = checkList;
 		this.logAcceptionType = logAcceptionType;
 		this.status = status;
 	}
@@ -57,12 +59,12 @@ public class LogAcception {
 		this.date = date;
 	}
 
-	public List<AnswerItemCheckList> getAnswerItemCheckList() {
-		return answerItemCheckList;
+	public CheckList getCheckList() {
+		return checkList;
 	}
 
-	public void setAnswerItemCheckList(List<AnswerItemCheckList> answerItemCheckList) {
-		this.answerItemCheckList = answerItemCheckList;
+	public void setCheckList(CheckList checkList) {
+		this.checkList = checkList;
 	}
 
 	public LogAcceptionType getLogAcceptionType() {
