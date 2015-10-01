@@ -45,6 +45,11 @@ public class CheckListModelController {
         result.include("technologys", Technology.values());
     }
 
+    @Get("/checkListModel")
+    public void list(){
+        
+    }
+
     @Post
     public void save(CheckListModel checkListModel, List<ItemCheckList> itemsCheckList){
         Map<String, Object> aMap = new HashMap<String, Object>();
@@ -66,12 +71,12 @@ public class CheckListModelController {
             }
 
             if(checkListModel.getId()==0){
-                aMap.replace("status",false);
+                aMap.replace("status", false);
             }
         }
         catch (Exception e){
             aMap.put("status",false);
-            aMap.put("error",e.getCause());
+            aMap.put("error", e.getCause());
         }
         finally {
             result.use(json()).withoutRoot().from(aMap).recursive().serialize();

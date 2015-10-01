@@ -37,6 +37,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aceitação<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value="/workOrder/form"/> "><span class="glyphicon glyphicon-plus-sign"></span> Cadastro de WorkOrder</a></li>
+                        <li><a href="<c:url value="/checkList/form/models"/> "><span class="glyphicon glyphicon-plus-sign"></span> Adicionar CheckList a WO</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="<c:url value="/checkListModel/form"/>"><span class="glyphicon glyphicon-th-list"></span> Cadastrar Modelo de CheckList</a></li>
                         <li role="separator" class="divider"></li>
