@@ -31,25 +31,17 @@ public class CheckListController {
 
     @Deprecated
     public CheckListController() {
-        this(null,null,null,null);
+        this(null, null, null, null);
     }
 
-    @Get("/checkList/form/models")
-    public void formCheckListModal(){
-        result.include("checkListModels", checkListModelDao.listActive(true));
-    }
-
-    @Get("/checkList/form/models/{checkListModel.id}")
-    public void formWorkOrder(CheckListModel checkListModel){
-        checkListModel = checkListModelDao.find(checkListModel);
-        List<WorkOrder> workOrders = workOrderDao.listTechnology(checkListModel.getTechnology());
-
-        result.include("checkListModel",checkListModel);
-        result.include("workOrders",workOrders);
-    }
-
-    @Get("/checkList/form/workOrder/{workOrder.id}/model/{checkListModel.id}")
-    public void form(WorkOrder workOrder, CheckListModel checkListModel){
+    @Get("/checkList/form")
+    public void form(CheckListModel checkListModel, WorkOrder workOrder){
+        if(workOrder.getId()==0){
+            result.forwardTo(WorkOrderController.class).list();
+        }
+        if(checkListModel.getId()==0){
+            result.forwardTo(CheckListModelController.class).list(true);
+        }
     }
 
 

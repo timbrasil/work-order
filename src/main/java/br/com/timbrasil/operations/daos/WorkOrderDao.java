@@ -50,6 +50,16 @@ public class WorkOrderDao {
 			return null;
 		}
 	}
-	
 
+
+	public List<WorkOrder> list() {
+		String jpql = "select t from WorkOrder as t";
+		TypedQuery<WorkOrder> typedQuery = manager.createQuery(jpql,WorkOrder.class);
+		try{
+			return typedQuery.getResultList();
+		}
+		catch (NoResultException nre){
+			return null;
+		}
+	}
 }

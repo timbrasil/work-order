@@ -27,9 +27,10 @@ public class WorkOrderController {
     private AddressDao addressDao;
     private LogStatusDao logStatusDao;
     private WorkOrderDao workOrderDao;
+    private CheckListModelDao checkListModelDao;
 
     @Inject
-    public WorkOrderController(Result result, Validator validator, TypeWorkOrderDao typeWorkOrderDao,CityDao cityDao,SiteDao siteDao, AddressDao addressDao, LogStatusDao logStatusDao, WorkOrderDao workOrderDao) {
+    public WorkOrderController(Result result, Validator validator, TypeWorkOrderDao typeWorkOrderDao,CityDao cityDao,SiteDao siteDao, AddressDao addressDao, LogStatusDao logStatusDao, WorkOrderDao workOrderDao, CheckListModelDao checkListModelDao) {
         this.result = result;
         this.validator = validator;
         this.typeWorkOrderDao = typeWorkOrderDao;
@@ -38,11 +39,12 @@ public class WorkOrderController {
         this.addressDao = addressDao;
         this.logStatusDao = logStatusDao;
         this.workOrderDao = workOrderDao;
+        this.checkListModelDao = checkListModelDao;
     }
 
     @Deprecated
     public WorkOrderController() {
-        this(null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null, null);
     }
 
     @Get
@@ -51,6 +53,53 @@ public class WorkOrderController {
         result.include("cities",cityDao.list());
         result.include("technologys", Technology.values());
     }
+
+    @Get("/workOrder")
+    public void list(){
+        result.include("workOrders",workOrderDao.list());
+    }
+
+    @Get("/workOrder/{workOrder.id}/checkList")
+    public void selectCheckListModel(WorkOrder workOrder){
+        try{
+            workOrder = workOrderDao.find(workOrder.getId());
+            if(workOrder.getId()==0){
+                result.redirectTo(this).list();
+            }
+            List<CheckListModel> checkListModels = checkListModelDao.listByTechnologyAndActive(workOrder.getTechnology(),true);
+            if(checkListModels.size()==1){
+                result.redirectTo(this).addCheckListForm(workOrder, checkListModels.get(0));
+            }
+            else{
+                result.include("workOrder",workOrder);
+                result.include("checkListModels",checkListModels);
+            }
+        }
+        catch (NullPointerException e){
+            result.redirectTo(this).list();
+        }
+    }
+
+    @Get("/workOrder/{workOrder.id}/checkList/add")
+    public void addCheckListForm(WorkOrder workOrder, CheckListModel checkListModel){
+        try{
+            workOrder = workOrderDao.find(workOrder.getId());
+            checkListModel = checkListModelDao.find(checkListModel.getId());
+            if(workOrder.getId()==0||checkListModel.getId()==0||workOrder.getTechnology()!=checkListModel.getTechnology()){
+                result.redirectTo(this).selectCheckListModel(workOrder);
+            }
+        }
+        catch (NullPointerException e){
+            result.redirectTo(this).selectCheckListModel(workOrder);
+        }
+        finally {
+            result.include("workOrder",workOrder);
+            result.include("checkListModel",checkListModel);
+            result.include("answersItemCheckList",AnswersItemChecklist.values());
+            result.include("statusAcception",StatusAcception.values());
+        }
+    }
+
 
     @Post
     public void save(WorkOrder workOrder,Site site,City city,Address address,List<TypeWorkOrder> typeWorkOrder,LogStatus logStatus){

@@ -32,8 +32,14 @@
                 <strong>Itens verificados no CheckList</strong>
             </div>
             <div class="panel-body">
-                <div class="col-sm-12" id="placeModelItemsCheckList">
-
+                <div class="table">
+                    <div class="col-sm-12 text-center" style="border-bottom: 2px solid #ddd; font-weight: bold;">
+                        <div class="col-sm-1">Nº</div>
+                        <div class="col-md-10">Descrição do Item</div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <div id="placeModelItemsCheckList">
+                    </div>
                 </div>
                 <div class="col-md-1 pull-right" style="margin-top: 20px;">
                     <button class="btn btn-primary" type="button" id="AddModelItemsCheckList">

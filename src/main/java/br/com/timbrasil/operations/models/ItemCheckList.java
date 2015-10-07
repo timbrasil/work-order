@@ -13,10 +13,14 @@ public class ItemCheckList {
     private long id;
 
     @NotEmpty
+    private String dirId;
+
+    @NotEmpty
     private String description;
 
-    public ItemCheckList(String description) {
+    public ItemCheckList(String description, String dirId) {
         this.description = description;
+        this.dirId = dirId;
     }
 
     /**
@@ -42,10 +46,19 @@ public class ItemCheckList {
         this.description = description;
     }
 
+    public String getDirId() {
+        return dirId;
+    }
+
+    public void setDirId(String dirId) {
+        this.dirId = dirId;
+    }
+
     @Override
     public String toString() {
         return "ItemCheckList{" +
                 "id=" + id +
+                ", dirId='" + dirId + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

@@ -46,14 +46,21 @@ public class CheckListModelController {
     }
 
     @Get("/checkListModel")
-    public void list(){
-        
+    public void list(Boolean active){
+        if(active==null){
+            result.include("checkListModels", checkListModelDao.list());
+        }
+        else{
+            result.include("checkListModels", checkListModelDao.listActive(active));
+        }
     }
 
     @Post
     public void save(CheckListModel checkListModel, List<ItemCheckList> itemsCheckList){
         Map<String, Object> aMap = new HashMap<String, Object>();
         try{
+            System.out.println(itemsCheckList);
+
             itemCheckListDao.save(itemsCheckList);
 
             checkListModel.setItemsCheckList(itemsCheckList);

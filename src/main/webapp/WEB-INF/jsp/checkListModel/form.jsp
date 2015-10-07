@@ -26,8 +26,6 @@
     </div>
 </div>
 
-<%@include file="form-models.jsp" %>
-
 <script src="<c:url value="/assets/js/checkListModel.js"/>"></script>
 <script>
     checkListModel.addItemsCheckList(); //Para adicionar uma linha inicialmente.

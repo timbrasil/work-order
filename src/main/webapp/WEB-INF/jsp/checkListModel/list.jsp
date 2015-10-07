@@ -8,8 +8,8 @@
           action="javascript:void(0)" autocomplete="on">
       <div class="form-group text-center bg-primary">
         <div class="col-md-12">
-          <h3>Selecione uma WO abaixo para inserir o CheckList</h3>
-          <p>Abaixo estão listadas as WOs com status WORKING.</p>
+          <h3>Selecione o modelo de CheckList</h3>
+          <p>Escolha o modelo de CheckList Referente a aceitação que você deseja fazer.</p>
         </div>
       </div>
 
@@ -17,30 +17,20 @@
         <table class="table table-striped table-condensed">
           <thead>
           <tr>
-            <th class="col-md-2">TicketId</th>
-            <th class="col-md-3">Site</th>
-            <th class="col-md-3">Tecnologia da Aceitação</th>
-            <th class="col-md-3">Tipo de WO</th>
+            <th class="col-md-9">Descrição</th>
+            <th class="col-md-2">Tecnologia</th>
             <th class="col-md-1"></th>
           </tr>
           </thead>
           <tbody>
-          <c:forEach var="workOrder" items="${workOrders}">
+          <c:forEach var="checkListModel" items="${checkListModels}">
             <tr>
-              <td>${workOrder.ticketId}</td>
-              <td>${workOrder.site.name}</td>
-              <td>${workOrder.technology}</td>
-              <td>
-                <c:forEach var="workOrderType" items="${workOrder.typeWorkOrders}">
-                  ${workOrderType.description},
-                </c:forEach>
-              </td>
-              <td>
-                <button
+              <td>${checkListModel.description}</td>
+              <td>${checkListModel.technology}</td>
+              <td><button
                       type="button"
                       class="btn btn-sm btn-primary"
-                      onclick='window.location="<c:url value="/checkList/form/workOrder/${workOrder.id}/model/${checkListModel.id}"/>"'>Selecionar</button>
-              </td>
+                      onclick='window.location="<c:url value="/checkList/form/models/${checkListModel.id}"/>"'>Selecionar</button></td>
             </tr>
           </c:forEach>
           </tbody>

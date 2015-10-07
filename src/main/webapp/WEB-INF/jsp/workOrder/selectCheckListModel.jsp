@@ -30,7 +30,7 @@
                             <td><button
                                     type="button"
                                     class="btn btn-sm btn-primary"
-                                    onclick='window.location="<c:url value="/checkList/form/models/${checkListModel.id}"/>"'>Selecionar</button></td>
+                                    onclick='window.location="<c:url value="/workOrder/${workOrder.id}/checkList/add?checkListModel.id=${checkListModel.id}"/>"'>Selecionar</button></td>
                         </tr>
                     </c:forEach>
                     </tbody>

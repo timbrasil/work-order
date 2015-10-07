@@ -123,10 +123,34 @@ public class WorkOrder implements Serializable {
                 '}';
     }
 
+    //Getters e Setters personalizados.
+
     public void pushLogStatus(LogStatus logStatus) {
         if(this.logStatus==null){
             this.logStatus = new ArrayList<LogStatus>();
         }
         this.logStatus.add(logStatus);
+    }
+
+    /**
+     * Consulta o ultimo elemento do Array de Histórico do LogStatus
+     * @return LogStatus
+     */
+    public LogStatus getLastLogStatus(){
+        if(this.logStatus==null){
+            return null;
+        }
+        return this.logStatus.get(this.logStatus.size()-1);
+    }
+
+    /**
+     * Consulta o ultimo elemento do Array de Histórico do LogAcception
+     * @return LogAcception
+     */
+    public LogAcception getLastLogAcception(){
+        if(this.logAcception==null){
+            return null;
+        }
+        return this.logAcception.get(this.logAcception.size()-1);
     }
 }

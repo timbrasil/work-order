@@ -1,7 +1,24 @@
+var totalItemsCheckList = 0;
 var checkListModel = {
     addItemsCheckList: function(){
-        $("#placeModelItemsCheckList").append($("#DOM_ModelItemCheckList").html());
+        var html='<div class="col-sm-12 DOM_ModelItemCheckList" style="padding-top: 5px;">' +
+            '<form class="formItemCheckList">' +
+            '<div class="col-md-1">' +
+            '<input type="text" class="form-control" id="NumberItemChekList" spellcheck="true" name="itemsCheckList[' + totalItemsCheckList +'].dirId" required>' +
+            '</div>' +
+            '<div class="col-md-10">' +
+            '<input type="text" class="form-control" id="ItemChekList" spellcheck="true" name="itemsCheckList[' + totalItemsCheckList +'].description" required>' +
+            '</div>' +
+            '<div class="col-md-1">' +
+            '<button class="btn btn-danger removeItemCheckList pull-right" type="button">' +
+            '<span class="glyphicon glyphicon-remove"></span>' +
+            '</button>' +
+            '</div>' +
+            '</form>' +
+            '</div>';
+        $("#placeModelItemsCheckList").append(html);
         $(".removeItemCheckList").unbind("click",checkListModel.removeItemsCheckList).on("click",checkListModel.removeItemsCheckList());
+        totalItemsCheckList+=1;
     },
     removeItemsCheckList: function(){
         $(this).parents('.DOM_ModelItemCheckList').remove();
@@ -20,6 +37,9 @@ var checkListModel = {
         }
 
         var serialized = $("#"+formId).serialize();
+        $("#"+formId+" .formItemCheckList").each(function(){
+            serialized+="&"+$(this).serialize();
+        });
 
         $.ajax({
             url: url,
