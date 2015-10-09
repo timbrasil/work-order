@@ -21,17 +21,13 @@ public class LogAcception {
 	@NotNull
 	@OneToOne
 	private CheckList checkList;
-
-	@Enumerated(EnumType.STRING)
-	private LogAcceptionType logAcceptionType;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusAcception status;
 
-	public LogAcception(Calendar date, CheckList checkList, LogAcceptionType logAcceptionType, StatusAcception status) {
+	public LogAcception(Calendar date, CheckList checkList, StatusAcception status) {
 		this.date = date;
 		this.checkList = checkList;
-		this.logAcceptionType = logAcceptionType;
 		this.status = status;
 	}
 
@@ -67,19 +63,21 @@ public class LogAcception {
 		this.checkList = checkList;
 	}
 
-	public LogAcceptionType getLogAcceptionType() {
-		return logAcceptionType;
-	}
-
-	public void setLogAcceptionType(LogAcceptionType logAcceptionType) {
-		this.logAcceptionType = logAcceptionType;
-	}
-
 	public StatusAcception getStatus() {
 		return status;
 	}
 
 	public void setStatus(StatusAcception status) {
 		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "LogAcception{" +
+				"id=" + id +
+				", date=" + date +
+				", checkList=" + checkList +
+				", status=" + status +
+				'}';
 	}
 }

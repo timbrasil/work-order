@@ -9,7 +9,6 @@
       <div class="form-group text-center bg-primary">
         <div class="col-md-12">
           <h3>Cadastro de CheckList</h3>
-          <p>Preencha o CheckList abaixo</p>
         </div>
       </div>
       <%@include file="addCheckListForm-inputs.jsp" %>
@@ -25,4 +24,15 @@
     </form>
   </div>
 </div>
+<script src="<c:url value="/assets/js/workOrder.js"/>"></script>
+<script>
+  $("#cadastrar").on("click",function(){
+    workOrder.saveCheckList(
+            '<c:url value="/workOrder/checkList/save"/>',
+            '<c:url value="/workOrder/${workOrder.id}"/>',
+            'POST',
+            'checkListAdd'
+    );
+  });
+</script>
 <%@include file="../footer.jsp" %>

@@ -7,6 +7,11 @@
                 <strong>Informações da WO</strong>
             </div>
             <div class="panel-body">
+                <div>
+                    <input type="hidden" class="form-control input-sm" id="workOrderId"
+                           name="workOrder.id"
+                           value="${workOrder.id}">
+                </div>
                 <div class="col-md-2">
                     <label for="ticketId" class="control-label">TicketID:</label>
                     <input type="text" class="form-control input-sm" id="ticketId"
@@ -14,11 +19,16 @@
                            value="${workOrder.ticketId}" disabled>
                 </div>
                 <div class="col-md-2">
-                    <label for="atributionDate" class="control-label">Data de Atribuição:</label>
-                    <input type="text" class="form-control input-sm" id="atributionDate"
-                           spellcheck="false" name="logStatus.atribution"
-                           value="<fmt:formatDate value="${workOrder.lastLogStatus.atribution.time}" type="date" />"
-                            disabled>
+                    <label for="site" class="control-label">Site:</label>
+                    <input type="text" class="form-control input-sm" id="site"
+                           spellcheck="false" name="workOrder.site.name"
+                           value="${workOrder.site.name}" disabled>
+                </div>
+                <div class="col-md-2">
+                    <label for="cidade" class="control-label">Cidade:</label>
+                    <input type="text" class="form-control input-sm" id="cidade"
+                           spellcheck="false" name="workOrder.site.address.city.name"
+                           value="${workOrder.site.address.city.name}" disabled>
                 </div>
                 <div class="col-md-2">
                     <label for="technology" class="control-label">Tecnologia:</label>
@@ -26,20 +36,45 @@
                            spellcheck="false" name="workOrder.technology"
                            value="${workOrder.technology}"  disabled>
                 </div>
+                <div class="col-md-12"></div>
+                <div class="col-md-2">
+                    <label for="atributionDate" class="control-label">Data de Atribuição:</label>
+                    <input type="text" class="form-control input-sm" id="atributionDate"
+                           spellcheck="false" name="logStatus.atribution"
+                           value="<fmt:formatDate value="${workOrder.lastLogStatus.atribution.time}" type="date" />"
+                           disabled>
+                    <input type="hidden"
+                           name="logStatus.atribution"
+                           value="<fmt:formatDate value="${workOrder.lastLogStatus.atribution.time}" type="date" />">
+                </div>
                 <div class="col-md-2">
                     <label for="executionDate" class="control-label">Data de Execução:</label>
                     <input type="text" class="form-control input-sm date" id="executionDate"
-                           spellcheck="false" name="workOrder.lastLogStatus.execution"
+                           spellcheck="false" name="logStatus.execution"
                            value="<fmt:formatDate value="${workOrder.lastLogStatus.execution.time}" type="date" />"
                            required>
                 </div>
                 <div class="col-md-2">
                     <label for="statusWorkOrder" class="control-label">Status:</label>
-                    <select class="form-control" id="statusWorkOrder" name="workOrder.lastLogStatus.status">
+                    <select class="form-control input-sm" id="statusWorkOrder" name="logStatus.status" required>
+                        <option value="null">Selecione uma opção</option>
                         <c:forEach var="acepption" items="${statusAcception}">
                             <option value="${acepption}">${acepption.nome}</option>
                         </c:forEach>
                     </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label">Amostragem:</label>
+                    <input form="x" type="checkbox" id="radioSamplingTrue" name="checkList.sampling">
+                    <script>
+                        $("[name='checkList.sampling']").bootstrapSwitch({
+                            size:'small',
+                            onText: 'SIM',
+                            offText: 'NÃO',
+                            onColor: 'success',
+                            offColor: 'danger'
+                        });
+                    </script>
                 </div>
             </div>
         </div>
@@ -68,13 +103,15 @@
                         <c:forEach var="itemCheckList" varStatus="itemsCheckListLoop" items="${checkListModel.itemsCheckList}">
                             <tr>
                                 <td>${itemCheckList.dirId}</td>
-                                <td>${itemCheckList.description}<input type="hidden" name="answerItemCheckList[${itemCheckList.id}].itemCheckList.id" value="${itemCheckList.id}"></td>
+                                <td>${itemCheckList.description}<input type="hidden" name="checkList.answers[${itemCheckList.id}].itemCheckList.id" value="${itemCheckList.id}"></td>
                                 <td>
                                     <c:forEach var="answerItemCheckList" items="${answersItemCheckList}">
-                                        <div class="col-sm-4"><input type="radio" class="form-control" name="answerItemChecklist[${itemCheckList.id}].answersItemChecklist" value="${answerItemCheckList}"></div>
+                                        <div class="col-sm-4"><input type="radio" class="form-control" name="checkList.answers[${itemCheckList.id}].answer" value="${answerItemCheckList}"></div>
                                     </c:forEach>
                                 </td>
-                                <td><textarea class="form-control text-area" name="answerItemChecklist[${itemCheckList.id}].justification" style="height: 17px"></textarea></td>
+                                <td>
+                                    <label for="justificativa${itemCheckList.id}" class="hidden">Justificativa</label>
+                                    <textarea id="justificativa${itemCheckList.id}" class="form-control text-area" name="checkList.answers[${itemCheckList.id}].justification" style="height: 17px" required></textarea></td>
                             </tr>
                         </c:forEach>
                         </tbody>

@@ -3,6 +3,9 @@
 <script src="<c:url value="/assets/js/jquery.mask.js"/>"></script>
 <script>
     $('.date').mask('00/00/0000',{placeholder: "__/__/____"});
+    $('.date').datepicker({
+        language: 'pt-BR'
+    });
 </script>
 
 <nav class="navbar navbar-default" style="margin-bottom: 0px;">

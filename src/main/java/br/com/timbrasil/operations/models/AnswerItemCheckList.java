@@ -17,14 +17,14 @@ public class AnswerItemCheckList {
     private ItemCheckList itemCheckList;
 
     @Enumerated(EnumType.STRING)
-    private AnswersItemChecklist answersItemChecklist;
+    private AnswersItemChecklist answer;
 
     @NotEmpty
     private String justification;
 
-    public AnswerItemCheckList(ItemCheckList itemCheckList, AnswersItemChecklist answersItemChecklist, String justification) {
+    public AnswerItemCheckList(ItemCheckList itemCheckList, AnswersItemChecklist answer, String justification) {
         this.itemCheckList = itemCheckList;
-        this.answersItemChecklist = answersItemChecklist;
+        this.answer = answer;
         this.justification = justification;
     }
 
@@ -51,12 +51,12 @@ public class AnswerItemCheckList {
         this.itemCheckList = itemCheckList;
     }
 
-    public AnswersItemChecklist getAnswersItemChecklist() {
-        return answersItemChecklist;
+    public AnswersItemChecklist getAnswer() {
+        return answer;
     }
 
-    public void setAnswersItemChecklist(AnswersItemChecklist answersItemChecklist) {
-        this.answersItemChecklist = answersItemChecklist;
+    public void setAnswer(AnswersItemChecklist answersItemChecklist) {
+        this.answer = answersItemChecklist;
     }
 
     public String getJustification() {
@@ -65,5 +65,15 @@ public class AnswerItemCheckList {
 
     public void setJustification(String justification) {
         this.justification = justification;
+    }
+
+    @Override
+    public String toString() {
+        return "AnswerItemCheckList{" +
+                "id=" + id +
+                ", itemCheckList=" + itemCheckList +
+                ", answer=" + answer +
+                ", justification='" + justification + '\'' +
+                '}';
     }
 }

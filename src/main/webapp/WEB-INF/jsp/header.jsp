@@ -12,6 +12,8 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-theme.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-switch.css"/>">
+    <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-datepicker.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/main.css"/> ">
 </head>
 
@@ -59,6 +61,9 @@
 
 <script src="<c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
 <script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/assets/js/bootstrap-switch.min.js"/>"></script>
+<script src="<c:url value="/assets/js/bootstrap-datepicker.min.js"/>"></script>
+<script src="<c:url value="/assets/js/bootstrap-datepicker.pt-BR.min.js"/>"></script>
 <script src="<c:url value="/assets/js/main.js"/>"></script>
 
 

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import sun.rmi.runtime.Log;
 
 @Entity
 public class WorkOrder implements Serializable {
@@ -130,6 +131,13 @@ public class WorkOrder implements Serializable {
             this.logStatus = new ArrayList<LogStatus>();
         }
         this.logStatus.add(logStatus);
+    }
+
+    public void pushLogAcception(LogAcception logAcception){
+        if(this.logAcception==null){
+            this.logAcception = new ArrayList<LogAcception>();
+        }
+        this.logAcception.add(logAcception);
     }
 
     /**

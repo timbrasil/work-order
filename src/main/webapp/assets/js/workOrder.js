@@ -37,5 +37,37 @@ var workOrder = {
                 }
             }
         });
+    },
+    saveCheckList: function (url,redirect,type,formId){
+        validate.checkAll(formId);
+
+        if(!validate.isValidate()){
+            validate.showModelAlert();
+            return false;
+        }
+
+        var serialized = $("#"+formId).serialize();
+
+        serialized += "&checkList.sampling="+$("#radioSamplingTrue").bootstrapSwitch('state');
+
+        $.ajax({
+            url: url,
+            type: type,
+            async: false,
+            datatype: "JSON",
+            data: serialized,
+            success: function (response) {
+                if(response.status==true){
+                    show.success(
+                        'Cadastro realizado com sucesso',
+                        'O seu cadastro foi realizado com successo!',
+                        redirect
+                    );
+                }
+                else{
+                    show.error('Occoreu um erro ao tentar executar a operação',response.error);
+                }
+            }
+        });
     }
 };

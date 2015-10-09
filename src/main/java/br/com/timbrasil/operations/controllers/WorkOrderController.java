@@ -26,11 +26,13 @@ public class WorkOrderController {
     private SiteDao siteDao;
     private AddressDao addressDao;
     private LogStatusDao logStatusDao;
+    private LogAcceptionDao logAcceptionDao;
     private WorkOrderDao workOrderDao;
     private CheckListModelDao checkListModelDao;
+    private CheckListDao checkListDao;
 
     @Inject
-    public WorkOrderController(Result result, Validator validator, TypeWorkOrderDao typeWorkOrderDao,CityDao cityDao,SiteDao siteDao, AddressDao addressDao, LogStatusDao logStatusDao, WorkOrderDao workOrderDao, CheckListModelDao checkListModelDao) {
+    public WorkOrderController(Result result, Validator validator, TypeWorkOrderDao typeWorkOrderDao,CityDao cityDao,SiteDao siteDao, AddressDao addressDao, LogStatusDao logStatusDao, LogAcceptionDao logAcceptionDao, WorkOrderDao workOrderDao, CheckListModelDao checkListModelDao, CheckListDao checkListDao) {
         this.result = result;
         this.validator = validator;
         this.typeWorkOrderDao = typeWorkOrderDao;
@@ -40,11 +42,13 @@ public class WorkOrderController {
         this.logStatusDao = logStatusDao;
         this.workOrderDao = workOrderDao;
         this.checkListModelDao = checkListModelDao;
+        this.logAcceptionDao = logAcceptionDao;
+        this.checkListDao = checkListDao;
     }
 
     @Deprecated
     public WorkOrderController() {
-        this(null, null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null, null, null, null);
     }
 
     @Get
@@ -100,6 +104,40 @@ public class WorkOrderController {
         }
     }
 
+    @Post("/workOrder/checkList/save")
+    public void addCheckListSave(WorkOrder workOrder, LogStatus logStatus, CheckList checkList, LogAcception logAcception){
+        Map<String, Object> aMap = new HashMap<String, Object>();
+        try{
+            logStatusDao.save(logStatus);
+
+            checkListDao.save(checkList);
+
+            logAcception.setDate(logStatus.getExecution());
+            logAcception.setStatus(StatusAcception.valueOf(logStatus.getStatus().toString()));
+            logAcception.setCheckList(checkList);
+            logAcceptionDao.save(logAcception);
+
+            workOrder = workOrderDao.find(workOrder.getId());
+            workOrder.pushLogStatus(logStatus);
+            workOrder.pushLogAcception(logAcception);
+            workOrderDao.save(workOrder);
+
+            if(validator.hasErrors()) {
+                aMap.put("status",false);
+                aMap.put("errors",validator.getErrors());
+            }
+            else {
+                aMap.put("status",true);
+                aMap.put("dados",workOrder);
+            }
+        }
+        catch (Exception e) {
+            aMap.put("status",false);
+            aMap.put("error",e);
+        } finally {
+            result.use(json()).withoutRoot().from(aMap).recursive().serialize();
+        }
+    }
 
     @Post
     public void save(WorkOrder workOrder,Site site,City city,Address address,List<TypeWorkOrder> typeWorkOrder,LogStatus logStatus){

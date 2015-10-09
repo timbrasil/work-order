@@ -19,6 +19,7 @@ public class LogStatusDao {
         this.manager = manager;
     }
 
+    @Deprecated
     public LogStatusDao() {
     }
 

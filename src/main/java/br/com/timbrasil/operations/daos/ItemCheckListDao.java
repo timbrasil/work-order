@@ -37,7 +37,6 @@ public class ItemCheckListDao {
 
     public void save(List<ItemCheckList> itemsCheckList) throws Exception{
         for(ItemCheckList itemCheckList : itemsCheckList){
-            System.out.println("SOUT Save: "+itemCheckList);
             this.save(itemCheckList);
         }
     }

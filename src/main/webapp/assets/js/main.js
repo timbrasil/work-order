@@ -19,8 +19,10 @@ var validate = {
             element = '#' + formId + ' input:required';
         }
         $(element).each(function(){
-            if($(this).val()=="" || $(this).val()==null){
-                validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório.");
+            if(!$(this).prop('disabled')){
+                if($(this).val()=="" || $(this).val()==null) {
+                    validate.errors.push("O campo '" + $(this).parent().children('label').text() + "' é obrigatório.");
+                }
             }
         });
     },
@@ -33,9 +35,12 @@ var validate = {
             element = '#' + formId + ' select:required';
         }
         $(element).each(function(){
-            if($(this).val()=="" || $(this).val()==null || $(this).val()=="null"){
-                validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório.");
+            if(!$(this).prop('disabled')){
+                if($(this).val()=="" || $(this).val()==null || $(this).val()=="null"){
+                    validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório. ");
+                }
             }
+
         });
     },
     requiredTextArea: function(formId){
@@ -47,8 +52,10 @@ var validate = {
             element = '#' + formId + ' textarea:required';
         }
         $(element).each(function(){
-            if($(this).val()=="" || $(this).val()==null || $(this).val()=="null"){
-                validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório.");
+            if(!$(this).prop('disabled')){
+                if($(this).val()=="" || $(this).val()==null || $(this).val()=="null"){
+                    validate.errors.push("O campo '"+$(this).parent().children('label').text()+"' é obrigatório. ");
+                }
             }
         });
     },
@@ -61,41 +68,42 @@ var validate = {
             element = '#' + formId + ' .date';
         }
         $(element).each(function(){
-            dateString= $(this).val();
-            // First check for the pattern
-            if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)){
-                validate.errors.push("O formato da data do campo '"+$(this).parent().children('label').text()+"' deve ser dd/mm/aaaa.");
-                return false;
+            if(!$(this).prop('disabled')){
+                dateString= $(this).val();
+                // First check for the pattern
+                if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)){
+                    validate.errors.push("O formato da data do campo '"+$(this).parent().children('label').text()+"' deve ser dd/mm/aaaa.");
+                    return false;
+                }
+
+                // Parse the date parts to integers
+                var parts = dateString.split("/");
+                var day = parseInt(parts[0], 10);
+                var month = parseInt(parts[1], 10);
+                var year = parseInt(parts[2], 10);
+
+                // Check the ranges of month and year
+                if(year < 1000 || year > 3000 || month <= 0 || month > 12){
+                    validate.errors.push("A data informada do campo '"+$(this).parent().children('label').text()+"' é inválida.");
+                    return false;
+                }
+
+                var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+                // Adjust for leap years
+                if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+                    monthLength[1] = 29;
+
+                // Check the range of the day
+                if(day > 0 && day <= monthLength[month - 1]){
+                }
+                else{
+                    validate.errors.push("A data informada do campo '"+$(this).parent().children('label').text()+"' é inválida.");
+                    return false;
+                }
             }
 
-            // Parse the date parts to integers
-            var parts = dateString.split("/");
-            var day = parseInt(parts[0], 10);
-            var month = parseInt(parts[1], 10);
-            var year = parseInt(parts[2], 10);
-
-            // Check the ranges of month and year
-            if(year < 1000 || year > 3000 || month <= 0 || month > 12){
-                validate.errors.push("A data informada do campo '"+$(this).parent().children('label').text()+"' é inválida.");
-                return false;
-            }
-
-            var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-            // Adjust for leap years
-            if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-                monthLength[1] = 29;
-
-            // Check the range of the day
-            if(day > 0 && day <= monthLength[month - 1]){
-            }
-            else{
-                validate.errors.push("A data informada do campo '"+$(this).parent().children('label').text()+"' é inválida.");
-                return false;
-            }
         });
-
-
     },
     isValidate: function(){
         if(validate.errors.length==0){

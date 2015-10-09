@@ -42,4 +42,21 @@ public class CheckList {
     public void setAnswers(List<AnswerItemCheckList> answers) {
         this.answers = answers;
     }
+
+    public boolean isSampling() {
+        return sampling;
+    }
+
+    public void setSampling(boolean sampling) {
+        this.sampling = sampling;
+    }
+
+    @Override
+    public String toString() {
+        return "CheckList{" +
+                "id=" + id +
+                ", answers=" + answers +
+                ", sampling=" + sampling +
+                '}';
+    }
 }
