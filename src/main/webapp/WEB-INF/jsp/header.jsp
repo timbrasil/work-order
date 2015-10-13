@@ -42,10 +42,6 @@
                         <li><a href="<c:url value="/workOrder/form"/> "><span class="glyphicon glyphicon-plus-sign"></span> Cadastro de WorkOrder</a></li>
                         <li><a href="<c:url value="/workOrder"/> "><span class="glyphicon glyphicon-list-alt"></span> Visualizar WorkOrders</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="<c:url value="/checkListModel/form"/>"><span class="glyphicon glyphicon-th-list"></span> Cadastrar Modelo de CheckList</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-search"></span> Consultar Aceitação</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Finalizar Aceitação</a></li>
                     </ul>
                 </li>
             </ul>

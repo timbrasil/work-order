@@ -28,27 +28,27 @@ public class WorkOrderController {
     private LogStatusDao logStatusDao;
     private LogAcceptionDao logAcceptionDao;
     private WorkOrderDao workOrderDao;
-    private CheckListModelDao checkListModelDao;
     private CheckListDao checkListDao;
+    private ItemCheckListDao itemCheckListDao;
 
     @Inject
-    public WorkOrderController(Result result, Validator validator, TypeWorkOrderDao typeWorkOrderDao,CityDao cityDao,SiteDao siteDao, AddressDao addressDao, LogStatusDao logStatusDao, LogAcceptionDao logAcceptionDao, WorkOrderDao workOrderDao, CheckListModelDao checkListModelDao, CheckListDao checkListDao) {
-        this.result = result;
+    public WorkOrderController(Validator validator, TypeWorkOrderDao typeWorkOrderDao, CityDao cityDao, SiteDao siteDao, AddressDao addressDao, LogStatusDao logStatusDao, LogAcceptionDao logAcceptionDao, WorkOrderDao workOrderDao, CheckListDao checkListDao, ItemCheckListDao itemCheckListDao, Result result) {
         this.validator = validator;
         this.typeWorkOrderDao = typeWorkOrderDao;
         this.cityDao = cityDao;
         this.siteDao = siteDao;
         this.addressDao = addressDao;
         this.logStatusDao = logStatusDao;
-        this.workOrderDao = workOrderDao;
-        this.checkListModelDao = checkListModelDao;
         this.logAcceptionDao = logAcceptionDao;
+        this.workOrderDao = workOrderDao;
         this.checkListDao = checkListDao;
+        this.itemCheckListDao = itemCheckListDao;
+        this.result = result;
     }
 
     @Deprecated
     public WorkOrderController() {
-        this(null, null, null, null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null, null, null,null);
     }
 
     @Get
@@ -63,42 +63,22 @@ public class WorkOrderController {
         result.include("workOrders",workOrderDao.list());
     }
 
-    @Get("/workOrder/{workOrder.id}/checkList")
-    public void selectCheckListModel(WorkOrder workOrder){
+    @Get("/workOrder/{workOrder.id}/checkList/add")
+    public void addCheckListForm(WorkOrder workOrder){
         try{
             workOrder = workOrderDao.find(workOrder.getId());
             if(workOrder.getId()==0){
                 result.redirectTo(this).list();
             }
-            List<CheckListModel> checkListModels = checkListModelDao.listByTechnologyAndActive(workOrder.getTechnology(),true);
-            if(checkListModels.size()==1){
-                result.redirectTo(this).addCheckListForm(workOrder, checkListModels.get(0));
-            }
-            else{
-                result.include("workOrder",workOrder);
-                result.include("checkListModels",checkListModels);
-            }
         }
         catch (NullPointerException e){
             result.redirectTo(this).list();
         }
-    }
-
-    @Get("/workOrder/{workOrder.id}/checkList/add")
-    public void addCheckListForm(WorkOrder workOrder, CheckListModel checkListModel){
-        try{
-            workOrder = workOrderDao.find(workOrder.getId());
-            checkListModel = checkListModelDao.find(checkListModel.getId());
-            if(workOrder.getId()==0||checkListModel.getId()==0||workOrder.getTechnology()!=checkListModel.getTechnology()){
-                result.redirectTo(this).selectCheckListModel(workOrder);
-            }
-        }
-        catch (NullPointerException e){
-            result.redirectTo(this).selectCheckListModel(workOrder);
-        }
         finally {
+            List<ItemCheckList> itemsCheckList = itemCheckListDao.listByTechnologyAndActive(workOrder.getTechnology(),true);
+            System.out.println(itemsCheckList);
             result.include("workOrder",workOrder);
-            result.include("checkListModel",checkListModel);
+            result.include("itemsCheckList", itemsCheckList);
             result.include("answersItemCheckList",AnswersItemChecklist.values());
             result.include("statusAcception",StatusAcception.values());
         }

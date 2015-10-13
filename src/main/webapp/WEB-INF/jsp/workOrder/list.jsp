@@ -43,7 +43,7 @@
                                     <button
                                             type="button"
                                             class="btn btn-sm btn-success"
-                                            onclick='window.location="<c:url value="/workOrder/${workOrder.id}/checkList"/>"'><span class="glyphicon glyphicon-plus"></span> CheckList</button>
+                                            onclick='window.location="<c:url value="/workOrder/${workOrder.id}/checkList/add"/>"'><span class="glyphicon glyphicon-plus"></span> CheckList</button>
                                 </c:if>
                                 <c:if test="${workOrder.lastLogStatus.status=='REJECTED'}">
                                     Botão em desenvolvimento

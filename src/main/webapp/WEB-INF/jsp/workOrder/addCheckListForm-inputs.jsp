@@ -102,7 +102,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="itemCheckList" varStatus="itemsCheckListLoop" items="${checkListModel.itemsCheckList}">
+                        <c:forEach var="itemCheckList" varStatus="itemsCheckListLoop" items="${itemsCheckList}">
                             <tr>
                                 <td>${itemCheckList.dirId}</td>
                                 <td>${itemCheckList.description}<input type="hidden" name="checkList.answers[${itemCheckList.id}].itemCheckList.id" value="${itemCheckList.id}"></td>
