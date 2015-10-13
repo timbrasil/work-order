@@ -65,7 +65,9 @@
                 </div>
                 <div class="col-md-2">
                     <label class="control-label">Amostragem:</label>
-                    <input form="x" type="checkbox" id="radioSamplingTrue" name="checkList.sampling">
+                    <form id="bootstrapSwitch_sampling">
+                        <input type="checkbox" id="radioSamplingTrue" name="checkList.sampling">
+                    </form>
                     <script>
                         $("[name='checkList.sampling']").bootstrapSwitch({
                             size:'small',
@@ -106,13 +108,23 @@
                                 <td>${itemCheckList.description}<input type="hidden" name="checkList.answers[${itemCheckList.id}].itemCheckList.id" value="${itemCheckList.id}"></td>
                                 <td>
                                     <c:forEach var="answerItemCheckList" items="${answersItemCheckList}">
-                                        <div class="col-sm-4"><input type="radio" class="form-control" name="checkList.answers[${itemCheckList.id}].answer" value="${answerItemCheckList}"></div>
+                                        <div class="col-sm-4"><input type="radio" class="form-control" name="checkList.answers[${itemCheckList.id}].answer" value="${answerItemCheckList}" required <c:if test="${answerItemCheckList=='NOK'}">checked</c:if> /></div>
                                     </c:forEach>
                                 </td>
                                 <td>
                                     <label for="justificativa${itemCheckList.id}" class="hidden">Justificativa</label>
                                     <textarea id="justificativa${itemCheckList.id}" class="form-control text-area" name="checkList.answers[${itemCheckList.id}].justification" style="height: 17px" required></textarea></td>
                             </tr>
+                            <script>
+                                $("input[name='checkList.answers[${itemCheckList.id}].answer']").on("change",function(){
+                                    if($(this).val()!='NOK'){
+                                        $("#justificativa${itemCheckList.id}").prop('disabled',true);
+                                    }
+                                    else{
+                                        $("#justificativa${itemCheckList.id}").prop('disabled',false);
+                                    }
+                                });
+                            </script>
                         </c:forEach>
                         </tbody>
                     </table>

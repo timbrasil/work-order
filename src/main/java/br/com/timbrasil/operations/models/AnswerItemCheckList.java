@@ -19,7 +19,6 @@ public class AnswerItemCheckList {
     @Enumerated(EnumType.STRING)
     private AnswersItemChecklist answer;
 
-    @NotEmpty
     private String justification;
 
     public AnswerItemCheckList(ItemCheckList itemCheckList, AnswersItemChecklist answer, String justification) {
