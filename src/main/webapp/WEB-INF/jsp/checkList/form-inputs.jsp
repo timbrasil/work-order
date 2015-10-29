@@ -38,7 +38,6 @@
                            spellcheck="false" name="workOrder.technology"
                            value="${workOrder.technology}"  disabled>
                 </div>
-                <div class="col-md-12"></div>
                 <div class="col-md-2">
                     <label for="atributionDate" class="control-label">Data de Atribuição:</label>
                     <input type="text" class="form-control input-sm" id="atributionDate"
@@ -49,25 +48,18 @@
                            name="workOrder.atribution"
                            value="<fmt:formatDate value="${workOrder.atribution.time}" type="date" />">
                 </div>
+                <div class="col-md-12"></div>
                 <div class="col-md-2">
                     <label for="executionDate" class="control-label">Data de Execução:</label>
                     <input type="text" class="form-control input-sm date" id="executionDate"
                            spellcheck="false" name="logStatus.execution"
+                           value="<fmt:formatDate value="${workOrder.lastLogStatusWithCheckList.execution.time}" type="date" />"
                            required>
                 </div>
                 <div class="col-md-2">
-                    <label for="statusWorkOrder" class="control-label">Status:</label>
-                    <select class="form-control input-sm" id="statusWorkOrder" name="logStatus.status" required>
-                        <option value="null">Selecione uma opção</option>
-                        <c:forEach var="acepption" items="${statusAcception}">
-                            <option value="${acepption}">${acepption.nome}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="control-label">Amostragem:</label>
+                    <label for="radioSamplingTrue" class="control-label">Amostragem:</label>
                     <form id="bootstrapSwitch_sampling">
-                        <input type="checkbox" id="radioSamplingTrue" name="checkList.sampling">
+                        <input type="checkbox" id="radioSamplingTrue" <c:if test="${workOrder.lastLogStatusWithCheckList.checkList.sampling}">checked</c:if> name="checkList.sampling">
                     </form>
                     <script>
                         $("[name='checkList.sampling']").bootstrapSwitch({
@@ -79,6 +71,15 @@
                         });
                     </script>
                 </div>
+                <select style="visibility: hidden" disabled class="form-control input-sm" id="statusWorkOrder" name="logStatus.status" required>
+                    <option value="null">Selecione uma opção</option>
+                    <%--@elvariable id="statusWorkOrder" type="br.com.timbrasil.operations.models.StatusWorkOrder"--%>
+                    <c:forEach var="status" items="${statusWorkOrder}">
+                        <c:if test="${status!='CREATE'&&status!='REATRIBUTION'}">
+                            <option value="${status}">${status.name}</option>
+                        </c:if>
+                    </c:forEach>
+                </select>
             </div>
         </div>
     </div>
@@ -116,12 +117,26 @@
                                                     class="form-control"
                                                     name="checkList.answers[${itemCheckList.id}].answer"
                                                     value="${answerItemCheckList}" required
-                                                    <c:if test="${answerItemCheckList=='NOK'}">checked</c:if>  title="Opt"/></div>
+                                                    <c:if test="${workOrder.lastLogStatusWithCheckList.checkList.getAnswerByItemCheckList(itemCheckList).answer!=null}">
+                                                        <c:if test="${answerItemCheckList == workOrder.lastLogStatusWithCheckList.checkList.getAnswerByItemCheckList(itemCheckList).answer}">checked</c:if>
+                                                    </c:if>
+                                                    <c:if test="${workOrder.lastLogStatusWithCheckList.checkList.getAnswerByItemCheckList(itemCheckList).answer==null}">
+                                                        <c:if test="${answerItemCheckList=='NOK'}">checked</c:if>
+                                                    </c:if>
+                                                    title="${answerItemCheckList}"/></div>
                                     </c:forEach>
                                 </td>
                                 <td>
                                     <label for="justificativa${itemCheckList.id}" class="hidden">Justificativa</label>
-                                    <textarea id="justificativa${itemCheckList.id}" class="form-control text-area" name="checkList.answers[${itemCheckList.id}].justification" style="height: 17px" required></textarea></td>
+                                    <textarea
+                                            id="justificativa${itemCheckList.id}"
+                                            class="form-control text-area"
+                                            name="checkList.answers[${itemCheckList.id}].justification"
+                                            style="height: 17px"
+                                            <c:if test="${workOrder.lastLogStatusWithCheckList.checkList.getAnswerByItemCheckList(itemCheckList).answer!=null}">
+                                                <c:if test="${workOrder.lastLogStatusWithCheckList.checkList.getAnswerByItemCheckList(itemCheckList).answer!='NOK'}">disabled</c:if>
+                                            </c:if>
+                                            required>${workOrder.lastLogStatusWithCheckList.checkList.getAnswerByItemCheckList(itemCheckList).justification}</textarea></td>
                             </tr>
                             <script>
                                 $("input[name='checkList.answers[${itemCheckList.id}].answer']").on("change",function(){

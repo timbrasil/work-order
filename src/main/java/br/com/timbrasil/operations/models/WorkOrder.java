@@ -148,13 +148,6 @@ public class WorkOrder implements Serializable {
         this.logStatus.add(logStatus);
     }
 
-    public void pushLogAcception(LogAcception logAcception){
-        if(this.logAcception==null){
-            this.logAcception = new ArrayList<LogAcception>();
-        }
-        this.logAcception.add(logAcception);
-    }
-
     /**
      * Consulta o ultimo elemento do Array de Histórico do LogStatus
      * @return LogStatus
@@ -169,18 +162,25 @@ public class WorkOrder implements Serializable {
         return this.logStatus.get(this.logStatus.size()-1);
     }
 
-    /**
-     * Consulta o ultimo elemento do Array de Histórico do LogAcception
-     * @return LogAcception
-     */
-    public LogAcception getLastLogAcception(){
-        if(this.logAcception==null){
+    public LogStatus getLogStatus(int index){
+        try{
+            return this.logStatus.get(index);
+        }
+        catch (NullPointerException e){
             return null;
         }
-        if(this.logAcception.size()==0){
+        catch (IndexOutOfBoundsException e){
             return null;
         }
-        return this.logAcception.get(this.logAcception.size()-1);
+    }
+
+    public LogStatus getLastLogStatusWithCheckList(){
+        for (int i=this.logStatus.size()-1;i>=0;i--){
+            if(this.logStatus.get(i).getCheckList()!=null){
+                return this.logStatus.get(i);
+            }
+        }
+        return null;
     }
 
     public boolean hasTypeWorkOrder(TypeWorkOrder typeWorkOrder){

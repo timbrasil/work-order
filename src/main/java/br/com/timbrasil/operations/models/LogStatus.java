@@ -45,7 +45,6 @@ public class LogStatus implements Serializable {
 		this.id = id;
 	}
 
-
 	public Calendar getExecution() {
 		return execution;
 	}
@@ -62,7 +61,15 @@ public class LogStatus implements Serializable {
 		this.status = status;
 	}
 
-    @Override
+	public CheckList getCheckList() {
+		return checkList;
+	}
+
+	public void setCheckList(CheckList checkList) {
+		this.checkList = checkList;
+	}
+
+	@Override
     public String toString() {
         return "LogStatus{" +
                 "id=" + id +

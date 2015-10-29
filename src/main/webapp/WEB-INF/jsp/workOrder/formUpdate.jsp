@@ -1,5 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@include file="../header.jsp" %>
+'<%--@elvariable id="workOrder" type="br.com.timbrasil.operations.models.WorkOrder"--%>
 
 <div class="container bg-white thumbnail box">
   <div class="col-md-12">
@@ -29,7 +30,7 @@
   $("#alterar").on("click",function(){
     workOrder.save(
             '<c:url value="/workOrder/edit/save"/>',
-            '<c:url value="/workOrder"/>',
+            '<c:url value="/workOrder/${workOrder.id}"/>',
             'POST',
             'workOrderAdd'
     );

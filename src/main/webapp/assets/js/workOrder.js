@@ -49,6 +49,7 @@ var workOrder = {
         var serialized = $("#"+formId).serialize();
 
         serialized += "&checkList.sampling="+$("#radioSamplingTrue").bootstrapSwitch('state');
+        serialized += "&logStatus.status="+$("#statusWorkOrder").val();
 
         $.ajax({
             url: url,

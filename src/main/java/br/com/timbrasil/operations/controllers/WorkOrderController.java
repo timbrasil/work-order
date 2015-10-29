@@ -25,17 +25,15 @@ public class WorkOrderController {
     private TypeWorkOrderDao typeWorkOrderDao;
     private CityDao cityDao;
     private SiteDao siteDao;
-    private AddressDao addressDao;
     private LogStatusDao logStatusDao;
     private WorkOrderDao workOrderDao;
 
     @Inject
-    public WorkOrderController(Validator validator, TypeWorkOrderDao typeWorkOrderDao, CityDao cityDao, SiteDao siteDao, AddressDao addressDao, LogStatusDao logStatusDao, WorkOrderDao workOrderDao, Result result) {
+    public WorkOrderController(Validator validator, TypeWorkOrderDao typeWorkOrderDao, CityDao cityDao, SiteDao siteDao, LogStatusDao logStatusDao, WorkOrderDao workOrderDao, Result result) {
         this.validator = validator;
         this.typeWorkOrderDao = typeWorkOrderDao;
         this.cityDao = cityDao;
         this.siteDao = siteDao;
-        this.addressDao = addressDao;
         this.logStatusDao = logStatusDao;
         this.workOrderDao = workOrderDao;
         this.result = result;
@@ -74,12 +72,19 @@ public class WorkOrderController {
                 return;
             }
 
+            //Valida data de atribuição.
+            if(workOrder.getAtribution().compareTo(Calendar.getInstance())>0){
+                aMap.put("status",false);
+                aMap.put("error", "A data de atribuição não pode ser superior a data atual!");
+                return;
+            }
+
             //Site
             site = siteDao.findOrPersist(site,city,address);
 
             //LogStatus
-            logStatus.setStatus(StatusWorkOrder.WORKING);
-            logStatus.setExecution(workOrder.getAtribution());
+            logStatus.setStatus(StatusWorkOrder.CREATE);
+            logStatus.setExecution(Calendar.getInstance());
             logStatusDao.save(logStatus);
 
             //WorkOrder
@@ -114,7 +119,7 @@ public class WorkOrderController {
         }
         else{
             //Verifica se a WO já possui um checklist atrelado. Caso possua, não deixa editar.
-            if(workOrder.getLastLogAcception()==null){
+            if(workOrder.getLastLogStatus().getStatus()==StatusWorkOrder.CREATE){
                 result.include("workOrder", workOrder);
                 result.include("typeWorkOrders",typeWorkOrderDao.list());
                 result.include("cities",cityDao.list());
@@ -138,7 +143,7 @@ public class WorkOrderController {
             }
 
             //Verifica se a WO já possui um checklist atrelado. Caso possua, não deixa editar.
-            if(workOrderSearch.getLastLogAcception()!=null){
+            if(workOrderSearch.getLastLogStatus().getStatus()!=StatusWorkOrder.CREATE){
                 result.redirectTo(this).detail(workOrder);
             }
 
@@ -195,14 +200,14 @@ public class WorkOrderController {
                 result.use(json()).withoutRoot().from(aMap).recursive().serialize();
                 return;
             }
-            if(logStatus.getExecution().compareTo(workOrder.getLastLogStatus().getExecution())<0){
+            if(logStatus.getExecution().compareTo(workOrder.getLastLogStatus().getExecution())<=0){
                 aMap.put("status",false);
                 aMap.put("error", "A data de reatribuição deve ser maior que a data de rejeição!");
                 result.use(json()).withoutRoot().from(aMap).recursive().serialize();
                 return;
             }
 
-            logStatus.setStatus(StatusWorkOrder.WORKING);
+            logStatus.setStatus(StatusWorkOrder.REATRIBUTION);
             logStatusDao.save(logStatus);
 
             workOrder.pushLogStatus(logStatus);

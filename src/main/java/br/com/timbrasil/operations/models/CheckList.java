@@ -1,5 +1,7 @@
 package br.com.timbrasil.operations.models;
 
+import com.amazonaws.services.simpledb.model.Item;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -58,5 +60,15 @@ public class CheckList {
                 ", answers=" + answers +
                 ", sampling=" + sampling +
                 '}';
+    }
+
+    //Get e Setter personalizado.
+    public AnswerItemCheckList getAnswerByItemCheckList(ItemCheckList itemCheckList){
+        for(AnswerItemCheckList answer: this.answers){
+            if(answer.getItemCheckList()==itemCheckList){
+                return answer;
+            }
+        }
+        return null;
     }
 }

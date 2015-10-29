@@ -14,7 +14,7 @@
             <img src="<c:url value="/assets/images/LOGO_TIM_cor_fundo_claro.png"/>"  width="100px">
         </a>
         <div style="text-align:center; color:#000000; font-size:9px">Copyright &copy; 2015 TIM BRASIL
-            | Design and Programming: <a href="mailto:icamasso@timbrasil.com.br">Igor Camasso</a> and <a href="mailto:prabello@timbrasil.com.br">Pedro Rabello</a>
+            | Design and Programming: <a href="mailto:icamasso@timbrasil.com.br">Igor Camasso</a>
         </div>
     </div>
 </nav>

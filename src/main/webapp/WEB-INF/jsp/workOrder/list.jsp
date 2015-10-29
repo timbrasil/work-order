@@ -8,7 +8,7 @@
               action="javascript:void(0)" autocomplete="on">
             <div class="form-group text-center bg-primary">
                 <div class="col-md-12">
-                    <h3>Work Orders</h3>
+                    <h3 style="margin-top: 3px; margin-bottom: 0">Work Orders</h3>
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
                         <th class="col-md-3">Tecnologia da Aceitação</th>
                         <th class="col-md-3">Tipo de WO</th>
                         <th class="col-md-3">Status</th>
-                        <th class="col-md-2"></th>
+                        <th class="col-md-2">CheckList</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,20 +39,29 @@
                                 </c:forEach>
                             </td>
                             <td>
-                                ${workOrder.lastLogStatus.status}
+                                <b>${workOrder.lastLogStatus.status.name}</b>
                             </td>
                             <td>
+                                <c:if test="${workOrder.lastLogStatus.status=='CREATE'||workOrder.lastLogStatus.status=='REATRIBUTION'}">
+                                    <button
+                                            style="margin-left: 25%;"
+                                            type="button"
+                                            class="btn btn-sm btn-default"
+                                            onclick='window.location="<c:url value="/workOrder/${workOrder.id}/checkList/add"/>"'><span class="glyphicon glyphicon-plus"></span></button>
+                                </c:if>
                                 <c:if test="${workOrder.lastLogStatus.status=='WORKING'}">
                                     <button
+                                            style="margin-left: 25%;"
                                             type="button"
-                                            class="btn btn-sm btn-success"
-                                            onclick='window.location="<c:url value="/workOrder/${workOrder.id}/checkList/add"/>"'><span class="glyphicon glyphicon-plus"></span> CheckList</button>
+                                            class="btn btn-sm btn-default"
+                                            onclick='window.location="<c:url value="/workOrder/${workOrder.id}/checkList/add"/>"'><span class="glyphicon glyphicon-edit"></span></button>
                                 </c:if>
                                 <c:if test="${workOrder.lastLogStatus.status=='REJECTED'}">
                                     <button
+                                            style="margin-left: 25%;"
                                             type="button"
-                                            class="btn btn-sm btn-success"
-                                            onclick='reatributionDate(${workOrder.id})'><span class="glyphicon glyphicon-plus"></span> Reatribuir</button>
+                                            class="btn btn-sm btn-default"
+                                            onclick='reatributionDate(${workOrder.id})'><span class="glyphicon glyphicon-retweet"></span></button>
                                 </c:if>
                             </td>
                         </tr>
