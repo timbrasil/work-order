@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import br.com.caelum.vraptor.util.StringUtils;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -66,5 +67,17 @@ public class Address implements Serializable {
 				", city=" + city +
 				", street='" + street + '\'' +
 				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Address address = (Address) o;
+
+		if (!getCity().equals(address.getCity())) return false;
+		return getStreet().equals(address.getStreet());
+
 	}
 }

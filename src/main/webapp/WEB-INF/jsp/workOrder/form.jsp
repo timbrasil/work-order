@@ -29,8 +29,8 @@
 <script>
     $("#cadastrar").on("click",function(){
         workOrder.save(
-                '<c:url value="/workOrder/save"/>',
-                '<c:url value="/workOrder/form"/>',
+                '<c:url value="/workOrder/add/save"/>',
+                '<c:url value="/workOrder"/>',
                 'POST',
                 'workOrderAdd'
         );

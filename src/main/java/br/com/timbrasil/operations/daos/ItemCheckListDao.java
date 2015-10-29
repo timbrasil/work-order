@@ -32,9 +32,10 @@ public class ItemCheckListDao {
     }
 
     public List<ItemCheckList> listByTechnologyAndActive(Technology technology, Boolean active){
-        String jpql = "select i from ItemCheckList as i where active = :pActive";
+        String jpql = "select item from ItemCheckList item JOIN item.technologies tech WHERE item.active = :pActive and tech = :pTechnology";
         TypedQuery<ItemCheckList> typedQuery = manager.createQuery(jpql, ItemCheckList.class);
         typedQuery.setParameter("pActive", active);
+        typedQuery.setParameter("pTechnology", technology);
         List<ItemCheckList> technologyItems = new ArrayList<ItemCheckList>();
 
         for(ItemCheckList itemCheckList:typedQuery.getResultList()){

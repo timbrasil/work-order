@@ -1,5 +1,7 @@
 package br.com.timbrasil.operations.daos;
 
+import br.com.timbrasil.operations.models.Address;
+import br.com.timbrasil.operations.models.City;
 import br.com.timbrasil.operations.models.Site;
 
 import javax.enterprise.context.RequestScoped;
@@ -15,10 +17,14 @@ import javax.persistence.TypedQuery;
 public class SiteDao {
 
     private EntityManager manager;
+    private CityDao cityDao;
+    private AddressDao addressDao;
 
     @Inject
-    public SiteDao(EntityManager manager) {
+    public SiteDao(EntityManager manager, CityDao cityDao, AddressDao addressDao) {
         this.manager = manager;
+        this.cityDao = cityDao;
+        this.addressDao = addressDao;
     }
 
     @Deprecated
@@ -40,6 +46,25 @@ public class SiteDao {
         }catch(NoResultException nre){
             return null;
         }
+    }
+
+    public Site findOrPersist(Site site, City city, Address address){
+        if(this.find(site)==null){
+            //City
+            city = cityDao.find(city);
+
+            //Address
+            address.setCity(city);
+            System.out.println(address);
+            addressDao.save(address);
+
+            site.setAddress(address);
+            this.save(site);
+        }
+        else{
+            site = this.find(site);
+        }
+        return site;
     }
 
 }

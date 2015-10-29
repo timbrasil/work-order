@@ -1,4 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%--@elvariable id="workOrder" type="br.com.timbrasil.operations.models.WorkOrder"--%>
+<%--@elvariable id="itemsCheckList" type="br.com.timbrasil.operations.models.ItemCheckList"--%>
 
 <div class="form-horizontal">
     <div class="col-md-12">
@@ -40,18 +42,17 @@
                 <div class="col-md-2">
                     <label for="atributionDate" class="control-label">Data de Atribuição:</label>
                     <input type="text" class="form-control input-sm" id="atributionDate"
-                           spellcheck="false" name="logStatus.atribution"
-                           value="<fmt:formatDate value="${workOrder.lastLogStatus.atribution.time}" type="date" />"
+                           spellcheck="false" name="workOrder.atribution"
+                           value="<fmt:formatDate value="${workOrder.atribution.time}" type="date" />"
                            disabled>
                     <input type="hidden"
-                           name="logStatus.atribution"
-                           value="<fmt:formatDate value="${workOrder.lastLogStatus.atribution.time}" type="date" />">
+                           name="workOrder.atribution"
+                           value="<fmt:formatDate value="${workOrder.atribution.time}" type="date" />">
                 </div>
                 <div class="col-md-2">
                     <label for="executionDate" class="control-label">Data de Execução:</label>
                     <input type="text" class="form-control input-sm date" id="executionDate"
                            spellcheck="false" name="logStatus.execution"
-                           value="<fmt:formatDate value="${workOrder.lastLogStatus.execution.time}" type="date" />"
                            required>
                 </div>
                 <div class="col-md-2">
@@ -102,13 +103,20 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         <c:forEach var="itemCheckList" varStatus="itemsCheckListLoop" items="${itemsCheckList}">
                             <tr>
                                 <td>${itemCheckList.dirId}</td>
                                 <td>${itemCheckList.description}<input type="hidden" name="checkList.answers[${itemCheckList.id}].itemCheckList.id" value="${itemCheckList.id}"></td>
                                 <td>
                                     <c:forEach var="answerItemCheckList" items="${answersItemCheckList}">
-                                        <div class="col-sm-4"><input type="radio" class="form-control" name="checkList.answers[${itemCheckList.id}].answer" value="${answerItemCheckList}" required <c:if test="${answerItemCheckList=='NOK'}">checked</c:if> /></div>
+                                        <div class="col-sm-4">
+                                            <input
+                                                    type="radio"
+                                                    class="form-control"
+                                                    name="checkList.answers[${itemCheckList.id}].answer"
+                                                    value="${answerItemCheckList}" required
+                                                    <c:if test="${answerItemCheckList=='NOK'}">checked</c:if>  title="Opt"/></div>
                                     </c:forEach>
                                 </td>
                                 <td>

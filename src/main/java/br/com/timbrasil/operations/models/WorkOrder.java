@@ -2,9 +2,11 @@ package br.com.timbrasil.operations.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.Type;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -19,6 +21,7 @@ public class WorkOrder implements Serializable {
 	private long id;
 	
 	@NotEmpty
+    @Column(unique = true)
 	private String ticketId;
 
     @NotNull
@@ -37,6 +40,10 @@ public class WorkOrder implements Serializable {
 	
 	@OneToMany
 	private List<LogAcception> logAcception;
+
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    private Calendar atribution;
 	
 	public WorkOrder(String ticketId, Site site, List<TypeWorkOrder> typeWorkOrders,LogStatus logStatus, Technology technology) {
 		this.ticketId = ticketId;
@@ -111,6 +118,14 @@ public class WorkOrder implements Serializable {
         this.technology = technology;
     }
 
+    public Calendar getAtribution() {
+        return atribution;
+    }
+
+    public void setAtribution(Calendar atribution) {
+        this.atribution = atribution;
+    }
+
     @Override
     public String toString() {
         return "WorkOrder{" +
@@ -148,6 +163,9 @@ public class WorkOrder implements Serializable {
         if(this.logStatus==null){
             return null;
         }
+        if(this.logStatus.size()==0){
+            return null;
+        }
         return this.logStatus.get(this.logStatus.size()-1);
     }
 
@@ -159,6 +177,13 @@ public class WorkOrder implements Serializable {
         if(this.logAcception==null){
             return null;
         }
+        if(this.logAcception.size()==0){
+            return null;
+        }
         return this.logAcception.get(this.logAcception.size()-1);
+    }
+
+    public boolean hasTypeWorkOrder(TypeWorkOrder typeWorkOrder){
+        return this.typeWorkOrders.contains(typeWorkOrder);
     }
 }

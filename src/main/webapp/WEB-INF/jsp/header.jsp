@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aceitação<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<c:url value="/workOrder/form"/> "><span class="glyphicon glyphicon-plus-sign"></span> Cadastro de WorkOrder</a></li>
+                        <li><a href="<c:url value="/workOrder/add/form"/> "><span class="glyphicon glyphicon-plus-sign"></span> Cadastro de WorkOrder</a></li>
                         <li><a href="<c:url value="/workOrder"/> "><span class="glyphicon glyphicon-list-alt"></span> Visualizar WorkOrders</a></li>
                         <li role="separator" class="divider"></li>
                     </ul>

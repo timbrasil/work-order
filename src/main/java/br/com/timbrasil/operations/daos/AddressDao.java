@@ -26,4 +26,12 @@ public class AddressDao {
     public void save(Address address){
         manager.persist(address);
     }
+
+    public Address find(long id){
+        return manager.find(Address.class, id);
+    }
+
+    public Address find(Address address){
+        return manager.find(Address.class, address.getId());
+    }
 }

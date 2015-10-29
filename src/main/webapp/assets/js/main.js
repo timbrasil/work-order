@@ -2,6 +2,7 @@
 var validate = {
     errors: [],
     checkAll: function (formId) {
+        validate.cleanErros();
         validate.requiredInputs(formId);
         validate.requiredSelects(formId);
         validate.requiredTextArea(formId);

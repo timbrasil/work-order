@@ -59,6 +59,14 @@ public class City {
 		this.name = name;
 	}
 
+	public int getDdd() {
+		return ddd;
+	}
+
+	public void setDdd(int ddd) {
+		this.ddd = ddd;
+	}
+
 	@Override
 	public String toString() {
 		return "City{" +

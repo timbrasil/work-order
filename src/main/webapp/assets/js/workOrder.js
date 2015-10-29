@@ -27,7 +27,7 @@ var workOrder = {
             success: function (response) {
                 if(response.status==true){
                     show.success(
-                        'Cadastro realizado com sucesso',
+                        'Operaçao realizada com sucesso',
                         'O seu cadastro foi realizado com successo!',
                         redirect
                     );
