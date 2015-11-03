@@ -63,8 +63,54 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div class="modal fade" id="amostragemChoose">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Alteração de amostragem</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        Você selecionou a opção sim para o modo amostragem.<br>
+                        <p>Você deseja alterar TODOS os itens do CheckList para OK?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="samplingAnswersNotChange" class="btn btn-success pull-left">Manter Respostas</button>
+                <button type="button" id="samplingAnswersOK" class="btn btn-danger pull-right">Trocar para OK</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script src="<c:url value="/assets/js/workOrder.js"/>"></script>
 <script>
+    //Altera CheckList conforme amostragem.
+    $("[name='checkList.sampling']").on('switchChange.bootstrapSwitch', function(event, state) {
+        if(state==true){
+            console.log(state);
+            var modal = $("#amostragemChoose").modal();
+            modal.show();
+        }
+    });
+    $("#samplingAnswersNotChange").on("click",function(){
+        $('#amostragemChoose').modal('hide');
+    });
+    $("#samplingAnswersOK").on("click",function(){
+        $('input[type=radio]', '#checkListAdd').each(function(){
+            if($(this).val()=='OK'){
+                $(this).prop("checked",true);
+            }
+        });
+        $('textarea', '#checkListAdd').each(function(){
+            $(this).prop("disabled",true);
+        });
+        $('#amostragemChoose').modal('hide');
+    });
+
     $("#cadastrar").on("click",function(){
         validate.checkAll('checkListAdd');
 
