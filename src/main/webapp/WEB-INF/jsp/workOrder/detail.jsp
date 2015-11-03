@@ -12,21 +12,28 @@
                     <a href="<c:url value="/workOrder/edit/${workOrder.id}"></c:url>"><button class="btn btn-default col-xs-12" <c:if test="${workOrder.lastLogStatus.status!='CREATE'}">disabled</c:if>><span class="glyphicon glyphicon-edit"></span> EDITAR</button></a>
                 </div>
                 <div class="col-md-8">
-                    <h3 style="margin-top: 3px; margin-bottom: 0;">Work Order</h3>
+                    <a style="padding: 0 0 0 0; margin-top: 5px;" class="btn btn-primary" href="<c:url value="/workOrder"></c:url>"><h3 style="margin-top: 0; margin-bottom: 0;"><b>Work Order</b></h3></a>
                 </div>
                 <c:if test="${workOrder.lastLogStatus.status!='ACCEPTED'&&workOrder.lastLogStatus.status!='REJECTED'}">
                     <div class="col-md-2 bg-white">
-                        <button class="btn btn-warning col-xs-12"><span class="glyphicon glyphicon-eye-open"></span> TRABALHANDO</button>
+                        <button class="btn btn-warning col-xs-12"
+                                <c:if test="${workOrder.lastLogStatus.status=='CREATE'}">disabled</c:if>
+                                onclick="window.location.href = '<c:url value="/workOrder/${workOrder.id}/checkList" />' "
+                                ><span class="glyphicon glyphicon-eye-open"></span> TRABALHANDO</button>
                     </div>
                 </c:if>
                 <c:if test="${workOrder.lastLogStatus.status=='ACCEPTED'}">
                     <div class="col-md-2 bg-white">
-                        <button class="btn btn-success col-xs-12"><span class="glyphicon glyphicon-eye-open"></span> FINALIZADA</button>
+                        <button class="btn btn-success col-xs-12"
+                                onclick="window.location.href = '<c:url value="/workOrder/${workOrder.id}/checkList" />' "
+                                ><span class="glyphicon glyphicon-eye-open"></span> FINALIZADA</button>
                     </div>
                 </c:if>
                 <c:if test="${workOrder.lastLogStatus.status=='REJECTED'}">
                     <div class="col-md-2 bg-white">
-                        <button class="btn btn-danger col-xs-12"><span class="glyphicon glyphicon-eye-open"></span> REJEITADA</button>
+                        <button class="btn btn-danger col-xs-12"
+                                onclick="window.location.href = '<c:url value="/workOrder/${workOrder.id}/checkList" />' "
+                                ><span class="glyphicon glyphicon-eye-open"></span> REJEITADA</button>
                     </div>
                 </c:if>
             </div>
@@ -52,14 +59,14 @@
         <div class="col-md-2 thumbnail-mini">
             <b>DDD:</b> ${workOrder.site.address.city.ddd}
         </div>
-        <div class="col-md-3 thumbnail-mini">
+        <div class="col-md-2 thumbnail-mini">
             <b>Cidade:</b> ${workOrder.site.address.city.name}
         </div>
-        <div class="col-md-7 thumbnail-mini">
+        <div class="col-md-8 thumbnail-mini">
             <b>Endereço:</b> ${workOrder.site.address.street}
         </div>
         <div class="col-md-12" style="margin-top: 20px">
-            <div class="panel panel-info">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title text-center"><b>Histórico da Work Order</b></h3>
                 </div>
@@ -68,23 +75,35 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Data de Execução</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">Amostragem</th>
+                                    <th class="col-md-3 text-center">Data de Execução</th>
+                                    <th class="col-md-3 text-center">Status</th>
+                                    <th class="col-md-3 text-center">Amostragem</th>
+                                    <th class="col-md-3 text-center">CheckList</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${workOrder.logStatus}" var="logStatus">
+                                <c:forEach items="${workOrder.logStatus}" var="logStatus" varStatus="loopStatus">
                                     <tr>
-                                        <td class="text-center"><fmt:formatDate value="${logStatus.execution.time}" type="date" /></td>
-                                        <td class="text-center">${logStatus.status.name}</td>
-                                        <td class="text-center">
+                                        <td class="col-md-3 text-center"><fmt:formatDate value="${logStatus.execution.time}" type="date" /></td>
+                                        <td class="col-md-3 text-center">${logStatus.status.name}</td>
+                                        <td class="col-md-3 text-center">
                                             <c:if test="${logStatus.checkList!=null}">
                                                 <c:if test="${logStatus.checkList.sampling}">Sim</c:if>
                                                 <c:if test="${not logStatus.checkList.sampling}">Não</c:if>
                                             </c:if>
                                             <c:if test="${logStatus.checkList==null}">
                                                 -
+                                            </c:if>
+                                        </td>
+                                        <td class="col-md-3">
+                                            <c:if test="${logStatus.checkList!=null}">
+                                                <button
+                                                        style="margin-left: 43%"
+                                                        type="button"
+                                                        class="btn btn-primary btn-sm"
+                                                        onclick="window.location.href = '<c:url value="/workOrder/${workOrder.id}/checkList/${loopStatus.index+1}"/>'">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                </button>
                                             </c:if>
                                         </td>
                                     </tr>                                    

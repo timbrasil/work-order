@@ -1,9 +1,6 @@
 package br.com.timbrasil.operations.controllers;
 
-import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.*;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.timbrasil.operations.daos.*;
 import br.com.timbrasil.operations.models.*;
@@ -23,17 +20,15 @@ public class CheckListController {
     private Validator validator;
     //DAOs
     private WorkOrderDao workOrderDao;
-    private LogAcceptionDao logAcceptionDao;
     private LogStatusDao logStatusDao;
     private CheckListDao checkListDao;
     private ItemCheckListDao itemCheckListDao;
 
     @Inject
-    public CheckListController(Result result, Validator validator, WorkOrderDao workOrderDao, LogAcceptionDao logAcceptionDao, LogStatusDao logStatusDao, CheckListDao checkListDao, ItemCheckListDao itemCheckListDao) {
+    public CheckListController(Result result, Validator validator, WorkOrderDao workOrderDao, LogStatusDao logStatusDao, CheckListDao checkListDao, ItemCheckListDao itemCheckListDao) {
         this.result = result;
         this.validator = validator;
         this.workOrderDao = workOrderDao;
-        this.logAcceptionDao = logAcceptionDao;
         this.logStatusDao = logStatusDao;
         this.checkListDao = checkListDao;
         this.itemCheckListDao = itemCheckListDao;
@@ -103,14 +98,44 @@ public class CheckListController {
             }
             else {
                 aMap.put("status",true);
-                aMap.put("dados",workOrder);
+                aMap.put("dados", workOrder);
             }
         }
         catch (Exception e) {
             aMap.put("status",false);
-            aMap.put("error",e);
+            aMap.put("error", e);
         } finally {
             result.use(json()).withoutRoot().from(aMap).recursive().serialize();
         }
     }
+
+    @Get
+    @Path({"/workOrder/{workOrder.id}/checkList/{logStatusIndex}","/workOrder/{workOrder.id}/checkList"})
+    public void detail(WorkOrder workOrder, int logStatusIndex){
+        System.out.println(workOrder);
+        System.out.println(logStatusIndex);
+        try{
+            workOrder = workOrderDao.find(workOrder);
+            logStatusIndex--; //Indice real é -1 do passado.
+            LogStatus logStatus;
+            if(logStatusIndex<0){
+                logStatus = workOrder.getLastLogStatusWithCheckList();
+            }
+            else{
+                logStatus = workOrder.getLogStatus(logStatusIndex);
+            }
+            if(logStatus==null||logStatus.getCheckList()==null){
+                result.redirectTo(WorkOrderController.class).detail(workOrder);
+            }
+            result.include("workOrder",workOrder);
+            result.include("logStatus",logStatus);
+        }
+        catch (NullPointerException e){
+            System.out.println("Catch:");
+            System.out.println(workOrder);
+            System.out.println(logStatusIndex);
+            result.redirectTo(WorkOrderController.class).list();
+        }
+    }
+
 }

@@ -70,11 +70,12 @@ public class LogStatus implements Serializable {
 	}
 
 	@Override
-    public String toString() {
-        return "LogStatus{" +
-                "id=" + id +
-                ", execution=" + execution +
-                ", status=" + status +
-                '}';
-    }
+	public String toString() {
+		return "LogStatus{" +
+				"id=" + id +
+				", execution=" + execution +
+				", status=" + status +
+				", checkList=" + checkList +
+				'}';
+	}
 }

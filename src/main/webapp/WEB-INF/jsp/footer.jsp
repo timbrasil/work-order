@@ -6,6 +6,9 @@
     $('.date').datepicker({
         language: 'pt-BR'
     });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 </script>
 
 <nav class="navbar navbar-default" style="margin-bottom: 0px;">
@@ -13,7 +16,7 @@
         <a class="navbar-brand" href="http://www.tim.com.br/" target="_blank" style="padding: 2px 0px 0px 0px">
             <img src="<c:url value="/assets/images/LOGO_TIM_cor_fundo_claro.png"/>"  width="100px">
         </a>
-        <div style="text-align:center; color:#000000; font-size:9px">Copyright &copy; 2015 TIM BRASIL
+        <div style="text-align:center; color:#000000; font-size:10px">Copyright &copy; 2015 TIM BRASIL
             | Design and Programming: <a href="mailto:icamasso@timbrasil.com.br">Igor Camasso</a>
         </div>
     </div>

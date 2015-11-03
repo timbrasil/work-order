@@ -8,7 +8,7 @@
               action="javascript:void(0)" autocomplete="on">
             <div class="form-group text-center bg-primary">
                 <div class="col-md-12">
-                    <h3 style="margin-top: 3px; margin-bottom: 0">Work Orders</h3>
+                    <h3 style="margin-top: 3px; margin-bottom: 0"><b>Work Orders</b></h3>
                 </div>
             </div>
 
@@ -29,7 +29,10 @@
                     <%--@elvariable id="workOrders" type="java.util.List<br.com.timbrasil.operations.models.WorkOrder>"--%>
                     <c:forEach var="workOrder" items="${workOrders}">
                         <tr>
-                            <td><a href="<c:url value="/workOrder/${workOrder.id}"/>" ><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                            <td><button
+                                    type="button"
+                                    class="btn btn-sm btn-primary"
+                                    onclick='window.location.href="<c:url value="/workOrder/${workOrder.id}"/>"'><span class="glyphicon glyphicon-eye-open"></span></button>
                             <td>${workOrder.ticketId}</td>
                             <td>${workOrder.site.name}</td>
                             <td>${workOrder.technology}</td>

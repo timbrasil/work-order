@@ -2,6 +2,7 @@ package br.com.timbrasil.operations.daos;
 
 import br.com.timbrasil.operations.models.AnswerItemCheckList;
 import br.com.timbrasil.operations.models.CheckList;
+import org.hibernate.annotations.Check;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -30,5 +31,9 @@ public class CheckListDao {
         answerItemCheckListDao.save(checkList.getAnswers());
         System.out.println("CheckList save: "+checkList);
         manager.persist(checkList);
+    }
+
+    public CheckList find(CheckList checkList){
+        return manager.find(CheckList.class,checkList.getId());
     }
 }

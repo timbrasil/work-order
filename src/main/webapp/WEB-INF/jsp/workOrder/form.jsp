@@ -8,7 +8,7 @@
               action="javascript:void(0)" autocomplete="on">
             <div class="form-group text-center bg-primary">
                 <div class="col-md-12">
-                    <h3>Cadastro de Work Order</h3>
+                    <h3><b>Cadastro de Work Order</b></h3>
                     <p>Preencha os dados da Work Order para inserir-la no Controle de WO.</p>
                 </div>
             </div>

@@ -11,7 +11,7 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-theme.min.css"/>">
+    <!--<link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-theme.min.css"/>">-->
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-switch.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-datepicker.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/main.css"/> ">
@@ -24,7 +24,6 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>

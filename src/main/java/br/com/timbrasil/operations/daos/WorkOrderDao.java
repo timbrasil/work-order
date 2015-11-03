@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+
+import br.com.timbrasil.operations.models.CheckList;
 import br.com.timbrasil.operations.models.Technology;
 import br.com.timbrasil.operations.models.WorkOrder;
 import org.hibernate.HibernateException;
