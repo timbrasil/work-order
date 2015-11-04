@@ -55,7 +55,6 @@ public class SiteDao {
 
             //Address
             address.setCity(city);
-            System.out.println(address);
             addressDao.save(address);
 
             site.setAddress(address);

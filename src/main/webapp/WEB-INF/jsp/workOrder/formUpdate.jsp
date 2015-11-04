@@ -18,10 +18,6 @@
           <input type="submit" id="alterar" value="Alterar" class="btn btn-success col-xs-12">
         </div>
       </div>
-
-      <c:forEach var="error" items="${errors}">
-        ${error.category} - ${error.message}<br />
-      </c:forEach>
     </form>
   </div>
 </div>

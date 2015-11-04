@@ -71,7 +71,7 @@
                         });
                     </script>
                 </div>
-                <select style="visibility: hidden" disabled class="form-control input-sm" id="statusWorkOrder" name="logStatus.status" required>
+                <select style="visibility: hidden" disabled class="form-control input-sm" id="statusWorkOrder" name="logStatus.status" required title="Operação">
                     <option value="null">Selecione uma opção</option>
                     <%--@elvariable id="statusWorkOrder" type="br.com.timbrasil.operations.models.StatusWorkOrder"--%>
                     <c:forEach var="status" items="${statusWorkOrder}">
@@ -96,6 +96,7 @@
                             <th class="col-sm-1">Nº</th>
                             <th class="col-sm-5 text-center">Descrição do Item</th>
                             <th class="col-sm-2">
+                                <%--@elvariable id="answersItemCheckList" type="java.util.List<br.com.timbrasil.operations.models.answeritemchecklist>"--%>
                                 <c:forEach var="answerItemCheckList" items="${answersItemCheckList}">
                                     <div class="col-sm-4 text-center">${answerItemCheckList}</div>
                                 </c:forEach>

@@ -112,8 +112,6 @@ public class CheckListController {
     @Get
     @Path({"/workOrder/{workOrder.id}/checkList/{logStatusIndex}","/workOrder/{workOrder.id}/checkList"})
     public void detail(WorkOrder workOrder, int logStatusIndex){
-        System.out.println(workOrder);
-        System.out.println(logStatusIndex);
         try{
             workOrder = workOrderDao.find(workOrder);
             logStatusIndex--; //Indice real é -1 do passado.
@@ -131,9 +129,6 @@ public class CheckListController {
             result.include("logStatus",logStatus);
         }
         catch (NullPointerException e){
-            System.out.println("Catch:");
-            System.out.println(workOrder);
-            System.out.println(logStatusIndex);
             result.redirectTo(WorkOrderController.class).list();
         }
     }

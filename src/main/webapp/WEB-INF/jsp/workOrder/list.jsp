@@ -72,9 +72,6 @@
                     </tbody>
                 </table>
             </div>
-            <c:forEach var="error" items="${errors}">
-                ${error.category} - ${error.message}<br />
-            </c:forEach>
         </form>
     </div>
 </div>

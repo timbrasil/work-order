@@ -1,3 +1,5 @@
+<%--@elvariable id="cpassword" type="java.lang.String"--%>
+<%--@elvariable id="user" type="br.com.timbrasil.operations.models.User"--%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -68,6 +70,7 @@
         <div class="templatemo-input-icon-container">
             <select name="user.region" id="region" class="form-control">
                 <option value="null" selected>Selecione uma região</option>
+                <%--@elvariable id="regions" type="java.util.List<br.com.timbrasil.operations.models.region>"--%>
                 <c:forEach items="${regions}" var="region">
                     <option value="${region}" ${region == user.region ? 'selected' : ''}>${region.nome}</option>
                 </c:forEach>
@@ -82,8 +85,9 @@
         <div class="templatemo-input-icon-container">
             <select name="user.area" id="area" class="form-control">
                 <option value="null" selected>Selecione uma area</option>
+                <%--@elvariable id="areas" type="java.util.List<br.com.timbrasil.operations.models.area>"--%>
                 <c:forEach items="${areas}" var="area">
-                    <option value="${area}" ${area == user.area ? 'selected' : ''} }>${area}</option>
+                    <option value="${area}" ${area == user.area ? 'selected' : ''}>${area}</option>
                 </c:forEach>
             </select>
         </div>

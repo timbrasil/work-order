@@ -54,7 +54,6 @@ public class ItemCheckListDao {
     }
 
     public void save(ItemCheckList itemCheckList) throws Exception{
-        System.out.println(itemCheckList.toString());
         manager.persist(itemCheckList);
     }
 

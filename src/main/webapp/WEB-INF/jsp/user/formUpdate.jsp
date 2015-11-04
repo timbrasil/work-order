@@ -39,11 +39,6 @@
                     <a class="btn btn-link" href="<c:url value="/login"/>">Voltar para página de login</a>
                 </div>
             </div>
-            
-            <c:forEach var="error" items="${errors}">
-    			${error.category} - ${error.message}<br />
-			</c:forEach>
-            
         </form>
     </div>
 </div>
@@ -56,6 +51,7 @@
 
 <script>
     $("#atualizar").on("click",function(){
+        <%--@elvariable id="user" type="br.com.timbrasil.operations.models.user"--%>
         user.save(
                 '<c:url value="/user/update/${user.id}"/>',
                 $("#name").val(),

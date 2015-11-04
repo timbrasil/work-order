@@ -52,6 +52,7 @@
 									class="btn btn-warning">
 							</div>
 						</div>
+						<%--@elvariable id="errors" type="java.util.List"--%>
 						<c:if test="${not empty errors}">
 							<div class="col-md-12 alert-danger list-group-item-danger">
 								<c:forEach var="error" items="${errors}">

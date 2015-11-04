@@ -130,6 +130,10 @@
             datatype: "JSON",
             success: function (response) {
                 if(response.status){
+                    /** @namespace response.data.technology */
+                    /** @namespace response.data.address */
+                    /** @namespace response.data.address.city */
+                    /** @namespace response.data.address.street */
                     technology.val(response.data.technology);
                     technology.prop("disabled",true);
                     city.val(response.data.address.city.id);

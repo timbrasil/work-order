@@ -5,12 +5,15 @@
     <properties>
       <property name="javax.persistence.jdbc.user" value="operations"/>
       <property name="javax.persistence.jdbc.password" value="operations"/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+      <!--<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>-->
       <property name="hibernate.show_sql" value="false"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/operations"/>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/operations"/>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/operations"/>-->
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <!--<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>-->
     </properties>
   </persistence-unit>
 </persistence>

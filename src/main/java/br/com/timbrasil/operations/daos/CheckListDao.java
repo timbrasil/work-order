@@ -29,7 +29,6 @@ public class CheckListDao {
 
     public void save(CheckList checkList){
         answerItemCheckListDao.save(checkList.getAnswers());
-        System.out.println("CheckList save: "+checkList);
         manager.persist(checkList);
     }
 

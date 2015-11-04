@@ -9,10 +9,10 @@
         <div class="form-horizontal">
             <div class="form-group text-center bg-primary">
                 <div class="col-md-2 bg-white">
-                    <a href="<c:url value="/workOrder/edit/${workOrder.id}"></c:url>"><button class="btn btn-default col-xs-12" <c:if test="${workOrder.lastLogStatus.status!='CREATE'}">disabled</c:if>><span class="glyphicon glyphicon-edit"></span> EDITAR</button></a>
+                    <a href="<c:url value="/workOrder/edit/${workOrder.id}"/>"><button class="btn btn-default col-xs-12" <c:if test="${workOrder.lastLogStatus.status!='CREATE'}">disabled</c:if>><span class="glyphicon glyphicon-edit"></span> EDITAR</button></a>
                 </div>
                 <div class="col-md-8">
-                    <a style="padding: 0 0 0 0; margin-top: 5px;" class="btn btn-primary" href="<c:url value="/workOrder"></c:url>"><h3 style="margin-top: 0; margin-bottom: 0;"><b>Work Order</b></h3></a>
+                    <a style="padding: 0 0 0 0; margin-top: 5px;" class="btn btn-primary" href="<c:url value="/workOrder"/>"><h3 style="margin-top: 0; margin-bottom: 0;"><b>Work Order</b></h3></a>
                 </div>
                 <c:if test="${workOrder.lastLogStatus.status!='ACCEPTED'&&workOrder.lastLogStatus.status!='REJECTED'}">
                     <div class="col-md-2 bg-white">
@@ -192,6 +192,7 @@
             data: serialized,
             success: function (response) {
                 if(response.status==true){
+                    /** @namespace response.status.ticketId */
                     $("#reatributionModal").modal('hide');
                     show.success(
                             'WorkOrder reatribuida',

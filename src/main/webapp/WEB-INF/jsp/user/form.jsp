@@ -39,11 +39,11 @@
                     <a class="btn btn-link" href="<c:url value="/login"/>">Voltar para página de login</a>
                 </div>
             </div>
-            
+
+            <%--@elvariable id="errors" type="java.util.List"--%>
             <c:forEach var="error" items="${errors}">
-    			${error.category} - ${error.message}<br />
-			</c:forEach>
-            
+                ${error.category} - ${error.message}<br />
+            </c:forEach>
         </form>
     </div>
 </div>

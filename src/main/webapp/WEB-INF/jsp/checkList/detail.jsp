@@ -10,10 +10,10 @@
         <div class="form-horizontal">
             <div class="form-group text-center bg-primary">
                 <div class="col-md-2 bg-white">
-                    <a href="<c:url value="/workOrder/${workOrder.id}"></c:url>"><button class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-eye-open"></span> Work Order</button></a>
+                    <a href="<c:url value="/workOrder/${workOrder.id}"/>"><button class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-eye-open"></span> Work Order</button></a>
                 </div>
                 <div class="col-md-8">
-                    <a style="padding: 0 0 0 0; margin-top: 5px;" class="btn btn-primary" href="<c:url value="/workOrder"></c:url>"><h3 style="margin-top: 0; margin-bottom: 0;"><b>Work Order</b></h3></a>
+                    <a style="padding: 0 0 0 0; margin-top: 5px;" class="btn btn-primary" href="<c:url value="/workOrder"/>"><h3 style="margin-top: 0; margin-bottom: 0;"><b>Work Order</b></h3></a>
                 </div>
                 <c:if test="${logStatus.status!='ACCEPTED'&&logStatus.status!='REJECTED'}">
                     <div class="col-md-2 bg-white">
