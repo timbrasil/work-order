@@ -35,7 +35,11 @@
                                     onclick='window.location.href="<c:url value="/workOrder/${workOrder.id}"/>"'><span class="glyphicon glyphicon-eye-open"></span></button>
                             <td>${workOrder.ticketId}</td>
                             <td>${workOrder.site.name}</td>
-                            <td>${workOrder.technology}</td>
+                            <td>
+                                <c:forEach items="${workOrder.technologies}" var="technology" varStatus="loop">
+                                    ${technology}<c:if test="${not loop.last}">, </c:if>
+                                </c:forEach>
+                            </td>
                             <td>
                                 <c:forEach var="workOrderType" varStatus="workOrderLoop" items="${workOrder.typeWorkOrders}">
                                     ${workOrderType.description}<c:if test="${!workOrderLoop.last}">, </c:if>

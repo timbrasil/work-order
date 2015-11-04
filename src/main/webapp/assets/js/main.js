@@ -107,12 +107,7 @@ var validate = {
         });
     },
     isValidate: function(){
-        if(validate.errors.length==0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return validate.errors.length == 0;
     },
     showModelAlert: function(){
         var modal = $("#alertModal").modal({keyboard:false});

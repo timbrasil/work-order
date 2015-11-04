@@ -11,9 +11,9 @@
     });
 </script>
 
-<nav class="navbar navbar-default" style="margin-bottom: 0px;">
+<nav class="navbar navbar-default" style="margin-bottom: 0;">
     <div class="container">
-        <a class="navbar-brand" href="http://www.tim.com.br/" target="_blank" style="padding: 2px 0px 0px 0px">
+        <a class="navbar-brand" href="http://www.tim.com.br/" target="_blank" style="padding: 2px 0 0 0">
             <img src="<c:url value="/assets/images/LOGO_TIM_cor_fundo_claro.png"/>"  width="100px">
         </a>
         <div style="text-align:center; color:#000000; font-size:10px">Copyright &copy; 2015 TIM BRASIL

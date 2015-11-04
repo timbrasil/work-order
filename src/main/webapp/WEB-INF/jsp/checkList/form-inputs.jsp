@@ -36,7 +36,7 @@
                     <label for="technology" class="control-label">Tecnologia:</label>
                     <input type="text" class="form-control input-sm" id="technology"
                            spellcheck="false" name="workOrder.technology"
-                           value="${workOrder.technology}"  disabled>
+                           value="<c:forEach items="${workOrder.technologies}" var="technology" varStatus="loop">${technology}<c:if test="${not loop.last}">, </c:if></c:forEach>"  disabled>
                 </div>
                 <div class="col-md-2">
                     <label for="atributionDate" class="control-label">Data de Atribuição:</label>

@@ -7,6 +7,7 @@ var workOrder = {
         validate.checkAll(formId);
 
         //Validações
+        var ticketId = $("#ticketId").val();
         if(ticketId<0) {
             validate.putError("Número do TicketId Inválido.");
         }

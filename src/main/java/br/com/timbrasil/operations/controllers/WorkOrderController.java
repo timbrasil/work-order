@@ -64,6 +64,7 @@ public class WorkOrderController {
     @Post("/workOrder/add/save")
     public void save(WorkOrder workOrder,Site site,City city,Address address,List<TypeWorkOrder> typeWorkOrder,LogStatus logStatus){
         Map<String, Object> aMap = new HashMap<String, Object>();
+        System.out.println(typeWorkOrder);
         try {
             WorkOrder workOrderSearch = workOrderDao.find(workOrder);
             if(workOrderSearch!=null){
@@ -76,6 +77,20 @@ public class WorkOrderController {
             if(workOrder.getAtribution().compareTo(Calendar.getInstance())>0){
                 aMap.put("status",false);
                 aMap.put("error", "A data de atribuição não pode ser superior a data atual!");
+                return;
+            }
+
+            //Valida se existe pelo menos uma tecnologia
+            if(workOrder.getTechnologies().size()==0){
+                aMap.put("status",false);
+                aMap.put("error", "É obrigatório informar pelo menos uma tecnologia para a WorkOrder!");
+                return;
+            }
+
+            //Valida se existe pelo menos um tipo de aceitação selecionado.
+            if(typeWorkOrder==null){
+                aMap.put("status",false);
+                aMap.put("error", "É obrigatório informar pelo menos um tipo de aceitação!");
                 return;
             }
 
@@ -102,9 +117,9 @@ public class WorkOrderController {
                 aMap.put("status",true);
                 aMap.put("dados",workOrder);
             }
-        } catch (Exception e) {
-            aMap.put("status",false);
-            aMap.put("error",e);
+        } catch (NullPointerException e) {
+            aMap.put("status", false);
+            aMap.put("error", "Existe campos vazios!");
         } finally {
             result.use(json()).withoutRoot().from(aMap).recursive().serialize();
         }
@@ -147,15 +162,28 @@ public class WorkOrderController {
                 result.redirectTo(this).detail(workOrder);
             }
 
+            //Valida se existe pelo menos uma tecnologia
+            if(workOrder.getTechnologies()==null){
+                aMap.put("status",false);
+                aMap.put("error", "É obrigatório informar pelo menos uma tecnologia para a WorkOrder!");
+                return;
+            }
+
+            //Valida se existe pelo menos um tipo de aceitação selecionado.
+            if(typeWorkOrder==null){
+                aMap.put("status",false);
+                aMap.put("error", "É obrigatório informar pelo menos um tipo de aceitação!");
+                return;
+            }
+
             //Site
             site = siteDao.findOrPersist(site,city,address);
 
             //WorkOrder
             workOrderSearch.setTicketId(workOrder.getTicketId());
-            workOrderSearch.setTechnology(workOrder.getTechnology());
+            workOrderSearch.setTechnologies(workOrder.getTechnologies());
             workOrderSearch.setTypeWorkOrders(typeWorkOrder);
             workOrderSearch.setSite(site);
-
             workOrderDao.update(workOrderSearch);
 
             if(validator.hasErrors()) {
@@ -166,9 +194,17 @@ public class WorkOrderController {
                 aMap.put("status",true);
                 aMap.put("dados",workOrder);
             }
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             aMap.put("status",false);
-            aMap.put("error",e.getMessage());
+            aMap.put("error", "Existe dados não preenchidos!");
+            e.printStackTrace();
+            System.out.println("Catch:\n");
+            System.out.println(workOrder);
+            System.out.println(site);
+            System.out.println(city);
+            System.out.println(address);
+            System.out.println(typeWorkOrder);
+            System.out.println(logStatus);
         } finally {
             result.use(json()).withoutRoot().from(aMap).recursive().serialize();
         }

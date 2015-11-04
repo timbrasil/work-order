@@ -53,7 +53,7 @@ public class CheckListController {
             result.redirectTo(WorkOrderController.class).list();
         }
         finally {
-            List<ItemCheckList> itemsCheckList = itemCheckListDao.listByTechnologyAndActive(workOrder.getTechnology(),true);
+            List<ItemCheckList> itemsCheckList = itemCheckListDao.listByTechnologyAndActive(workOrder.getTechnologies(),true);
             result.include("workOrder",workOrder);
             result.include("itemsCheckList", itemsCheckList);
             result.include("answersItemCheckList",AnswersItemChecklist.values());
@@ -62,7 +62,7 @@ public class CheckListController {
     }
 
     @Post("/workOrder/checkList/save")
-    public void save(WorkOrder workOrder, LogStatus logStatus, CheckList checkList, LogAcception logAcception){
+    public void save(WorkOrder workOrder, LogStatus logStatus, CheckList checkList){
         Map<String, Object> aMap = new HashMap<String, Object>();
         try{
             workOrder = workOrderDao.find(workOrder.getId());

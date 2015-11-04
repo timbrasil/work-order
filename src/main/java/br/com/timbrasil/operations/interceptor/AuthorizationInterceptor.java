@@ -37,7 +37,6 @@ public class AuthorizationInterceptor {
 	public void before(){
 		if(!userInSession.isLogged()){
 			result.redirectTo(LoginController.class).login();
-			return;
 		}
 	}
 	

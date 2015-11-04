@@ -4,5 +4,5 @@ public enum Area {
 	ANO,
 	CNO,
 	ONO,
-	TNO;
+	TNO
 }

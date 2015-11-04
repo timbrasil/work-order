@@ -32,4 +32,37 @@
         );
     });
 </script>
+
+<div id="techonologyModel" style="display: none">
+    <div class="col-md-12 technologyParent" style="margin-bottom: 10px">
+        <div class="input-group">
+            <label style="display: none;">Tecnologia da Work Order</label>
+            <select title="technology" class="form-control input-sm tecnologySelect" name="workOrder.technology" required>
+                <option value="null" selected>Selecione uma Tecnologia</option>
+                <%--@elvariable id="technologys" type="java.util.List<br.com.timbrasil.operations.models.Technology>"--%>
+                <%--@elvariable id="workOrder" type="br.com.timbrasil.operations.models.WorkOrder"--%>
+                <c:forEach items="${technologys}" var="technology">
+                    <option value="${technology}">${technology.nome}</option>
+                </c:forEach>
+            </select>
+            <div class="input-group-btn input-sm" style="padding: 0 0 0 0">
+                <button type="button" class="btn btn-danger technologyDelButton" style="height: 31px; width: 31px; padding: 2px 0 0 0"><span style="font-size: 16pt" class="glyphicon glyphicon-remove"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    technologyCounter = 0;
+    addTechnology();
+    function addTechnology(){
+        var technologyDOM = $("#techonologyModel");
+        technologyDOM.find('.tecnologySelect').prop('name',"workOrder.technologies["+technologyCounter+"]");
+        $("#tecnologyArea").append(technologyDOM.html());
+        $(".technologyDelButton").unbind("click").on("click",function(){
+            $(this).closest('.technologyParent').remove();
+        });
+        technologyCounter++;
+    }
+</script>
+
 <%@include file="../footer.jsp" %>

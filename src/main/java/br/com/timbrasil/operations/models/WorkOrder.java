@@ -6,11 +6,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.persistence.metamodel.Type;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import sun.rmi.runtime.Log;
 
 @Entity
 public class WorkOrder implements Serializable {
@@ -24,9 +22,9 @@ public class WorkOrder implements Serializable {
     @Column(unique = true)
 	private String ticketId;
 
-    @NotNull
+    @ElementCollection(targetClass = Technology.class)
     @Enumerated(EnumType.STRING)
-    private Technology technology;
+    private List<Technology> technologies;
 
 	@NotNull
     @ManyToOne
@@ -37,9 +35,6 @@ public class WorkOrder implements Serializable {
 
 	@OneToMany
 	private List<LogStatus> logStatus;
-	
-	@OneToMany
-	private List<LogAcception> logAcception;
 
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -49,9 +44,10 @@ public class WorkOrder implements Serializable {
 		this.ticketId = ticketId;
 		this.site = site;
 		this.typeWorkOrders = typeWorkOrders;
-		this.logStatus = new ArrayList<LogStatus>();
+		this.logStatus = new ArrayList<>();
 		this.logStatus.add(logStatus);
-        this.technology = technology;
+        this.technologies = new ArrayList<>();
+        this.technologies.add(technology);
 	}
 	
 	/**
@@ -59,7 +55,7 @@ public class WorkOrder implements Serializable {
 	 */
 	@Deprecated
 	public WorkOrder(){
-		
+		this.technologies = new ArrayList<>();
 	}
 
     public long getId() {
@@ -98,24 +94,24 @@ public class WorkOrder implements Serializable {
         return logStatus;
     }
 
-    public void setLogStatus(List<LogStatus> logStatus) {
-        this.logStatus = logStatus;
-    }
-
-    public List<LogAcception> getLogAcception() {
-        return logAcception;
-    }
-
-    public void setLogAcception(List<LogAcception> logAcception) {
-        this.logAcception = logAcception;
-    }
-
     public Technology getTechnology() {
-        return technology;
+        if(this.technologies.size()==0){
+            return null;
+        }
+        return this.technologies.get(0);
     }
 
     public void setTechnology(Technology technology) {
-        this.technology = technology;
+        this.technologies.clear();
+        this.technologies.add(technology);
+    }
+
+    public List<Technology> getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(List<Technology> technologies) {
+        this.technologies = technologies;
     }
 
     public Calendar getAtribution() {
@@ -131,11 +127,11 @@ public class WorkOrder implements Serializable {
         return "WorkOrder{" +
                 "id=" + id +
                 ", ticketId='" + ticketId + '\'' +
-                ", technology=" + technology +
+                ", technologies=" + technologies +
                 ", site=" + site +
                 ", typeWorkOrders=" + typeWorkOrders +
                 ", logStatus=" + logStatus +
-                ", logAcception=" + logAcception +
+                ", atribution=" + atribution +
                 '}';
     }
 

@@ -31,7 +31,7 @@ public enum State {
 
     private String nome;
 
-    private State(String nome) {
+    State(String nome) {
         this.nome = nome;
     }
 

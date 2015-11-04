@@ -31,19 +31,13 @@ public class ItemCheckListDao {
         this(null);
     }
 
-    public List<ItemCheckList> listByTechnologyAndActive(Technology technology, Boolean active){
-        String jpql = "select item from ItemCheckList item JOIN item.technologies tech WHERE item.active = :pActive and tech = :pTechnology";
+    public List<ItemCheckList> listByTechnologyAndActive(List<Technology> technologies, Boolean active){
+        String jpql = "select item from ItemCheckList item JOIN item.technologies tech WHERE item.active = :pActive and tech IN :pTechnologies GROUP BY item.id";
         TypedQuery<ItemCheckList> typedQuery = manager.createQuery(jpql, ItemCheckList.class);
         typedQuery.setParameter("pActive", active);
-        typedQuery.setParameter("pTechnology", technology);
-        List<ItemCheckList> technologyItems = new ArrayList<ItemCheckList>();
+        typedQuery.setParameter("pTechnologies", technologies);
 
-        for(ItemCheckList itemCheckList:typedQuery.getResultList()){
-            if(itemCheckList.getTechnologies().contains(technology)){
-                technologyItems.add(itemCheckList);
-            }
-        }
-        return technologyItems;
+        return typedQuery.getResultList();
     }
 
     public List<ItemCheckList> list(){
@@ -53,13 +47,11 @@ public class ItemCheckListDao {
         return typedQuery.getResultList();
     }
 
-    public void save(ItemCheckList itemCheckList) throws Exception{
+    public void save(ItemCheckList itemCheckList){
         manager.persist(itemCheckList);
     }
 
-    public void save(List<ItemCheckList> itemsCheckList) throws Exception{
-        for(ItemCheckList itemCheckList : itemsCheckList){
-            this.save(itemCheckList);
-        }
+    public void save(List<ItemCheckList> itemsCheckList){
+        itemsCheckList.forEach(this::save);
     }
 }

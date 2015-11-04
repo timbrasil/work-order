@@ -42,7 +42,7 @@
             <b>TicketId:</b> ${workOrder.ticketId}
         </div>
         <div class="col-md-2 thumbnail-mini">
-            <b>Tecnologia:</b> ${workOrder.technology}
+            <b>Tecnologia:</b> <c:forEach items="${workOrder.technologies}" var="technology" varStatus="loop">${technology}<c:if test="${not loop.last}">, </c:if></c:forEach>
         </div>
         <div class="col-md-3 thumbnail-mini">
             <b>Tipo de WO:</b>

@@ -12,7 +12,7 @@ public enum Technology {
 	
 	private String nome;
 	
-	private Technology(String nome) {
+	Technology(String nome) {
 		this.nome = nome;
 	}
 
